@@ -97,108 +97,16 @@
                             {{ object.data_posted|date:"F d, Y" }}
                         </small>
                     </div>
+                    {% if object.author == user %}
+                        <div>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                        </div>
+                    {% endif %}
                     <h2 class="article-title">{{ object.title }}</h2>
                     <p class="article-content">{{ object.content }}</p>
                 </div>
             </article>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col name">
-                                        德國是在
-                                    </div>
-                                    <div class="col">
-                                        <ul class="list-group list-group-horizontal float-right">
-                                            <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">2020/**/**</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
-                            <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="bablabla" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">留言</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col name">
-                                        德國是在
-                                    </div>
-                                    <div class="col">
-                                        <ul class="list-group list-group-horizontal float-right">
-                                            <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">2020/**/**</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
-                            <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="bablabla" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">留言</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col name">
-                                        德國是在
-                                    </div>
-                                    <div class="col">
-                                        <ul class="list-group list-group-horizontal float-right">
-                                            <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">2020/**/**</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
-                            <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="bablabla" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">留言</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 {% endblock content %}
