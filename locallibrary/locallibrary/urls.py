@@ -26,6 +26,7 @@ urlpatterns = [
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/Login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/Logout.html'), name='logout'),
+    path('password-reset/', auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'), name='password_reset'),
     path('', include('blog.urls')),
 
 ]
