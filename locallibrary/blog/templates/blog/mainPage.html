@@ -87,22 +87,6 @@
             <br>
             <!--討論區-->
             {% for post in posts %}
-                <article class="media content-section">
-                    <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}">
-                    <div class="media-body">
-                        <div class="article-metadata">
-                            <a class="mr-2 "href="#">
-                                {{ post.author}}
-                            </a>
-                            <small class="text-muted">
-                                {{ post.data_posted|date:"F d, Y" }}
-                            </small>
-                        </div>
-                        <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                        <p class="article-content">{{ post.content }}</p>
-                    </div>
-                </article>
-            {% endfor %}
             <div class="row">
                 <div class="col">
                     <div class="card">
@@ -110,20 +94,21 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col name">
-                                        德國是在
+                                        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="50" height = "50">
+                                        {{ post.author }}
                                     </div>
                                     <div class="col">
                                         <ul class="list-group list-group-horizontal float-right">
                                             <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">2020/**/**</li>
+                                            <li class="list-group-item threeblock">{{ post.data_posted|date:"F d, Y" }}</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
+                            <h5 class="card-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
+                            <p class="card-text">{{ post.content }}</p>
                             <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
                         </div>
                         <div class="input-group mb-3">
@@ -135,72 +120,8 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}
             <br>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col name">
-                                        德國是在
-                                    </div>
-                                    <div class="col">
-                                        <ul class="list-group list-group-horizontal float-right">
-                                            <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">2020/**/**</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
-                            <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="bablabla" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">留言</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col name">
-                                        德國是在
-                                    </div>
-                                    <div class="col">
-                                        <ul class="list-group list-group-horizontal float-right">
-                                            <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">2020/**/**</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
-                            <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="bablabla" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2">留言</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 {% endblock content %}

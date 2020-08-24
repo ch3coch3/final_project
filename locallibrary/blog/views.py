@@ -9,23 +9,13 @@ from django.views.generic import (
 )
 from .models import Post
 
-# from django.http import HttpResponse
 
-# Create your views here.
-posts  = [
-    {
-        'author':'CoreyMS',
-        'title':'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'August 27, 2018',
-        'other':'america'
-    },
-]
 def home(request):
     context = {
         'posts':Post.objects.all()
     }
     # return render(request, 'blog/home.html',context)
+    image = models.ImageField(default = 'default.jpg', upload_to='page_pics')
     return render(request, 'blog/mainPage.html',context)
 
 class PostListView(ListView):
@@ -33,6 +23,7 @@ class PostListView(ListView):
     template_name = 'blog/mainPage.html' # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
+    paginate_by = 2
 
 class PostDetailView(DetailView):
     model = Post
