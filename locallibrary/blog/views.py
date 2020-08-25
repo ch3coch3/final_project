@@ -27,6 +27,7 @@ class PostListView(ListView):
     ordering = ['-date_posted']          # 讓貼文以時間排序
     # paginate_by = 2                    # 每頁指顯示兩個貼文
 
+
 # 管理點入貼文後的詳細資訊
 class PostDetailView(DetailView):
     model = Post
