@@ -8,6 +8,7 @@ from django.views.generic import (
     DeleteView,
 )
 from .models import Post
+from .forms import PostForm
 
 
 def home(request):
@@ -36,9 +37,10 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
     model = Post
-    fields = ['title', 'content']
+    form_class = PostForm
+    template_name = 'blog/update_post.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -64,3 +66,9 @@ def about(request):
     return render(request, 'blog/about.html',{'title':'about'})
     # return HttpResponse('<h1>Blog About</h1>')
 
+class AddPostView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'blog/add_post.html'
+    #fields = '__all__'
+    

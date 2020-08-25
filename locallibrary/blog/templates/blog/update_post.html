@@ -1,0 +1,16 @@
+<!-- 文章編輯頁面 -->
+<!-- 不用post_form.html了 -->
+{% extends "blog/base.html" %}
+{% block title %}Update Post{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+           <h1>Update Post</h1>
+           <br/><br/>
+           <div class="form-group">
+               <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_media }}
+                    {{ form.as_p }}
+                    <button class='btn btn-info'>Update</button>
+                </div>
+{% endblock content %}
