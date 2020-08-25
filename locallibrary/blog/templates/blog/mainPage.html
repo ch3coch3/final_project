@@ -17,7 +17,7 @@
         <!--搜尋-->
         <div class="col">
             <div class="container-fluid">
-                <div class="row bar sticky-top">
+                <div class="row bar sticky-top ">
                     <div class="col">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="國家"
@@ -94,13 +94,13 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col name">
-                                        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="50" height = "50">
+                                        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="30" height = "30">
                                         {{ post.author }}
                                     </div>
                                     <div class="col">
                                         <ul class="list-group list-group-horizontal float-right">
-                                            <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">{{ post.data_posted|date:"F d, Y" }}</li>
+                                            <!--<li class="list-group-item threeblock">請益</li>-->
+                                            <li class="list-group-item threeblock">{{ post.date_posted|date:"F d, Y" }}</li>
                                         </ul>
                                     </div>
                                 </div>
