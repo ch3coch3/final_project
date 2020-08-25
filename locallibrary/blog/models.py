@@ -7,7 +7,7 @@ from ckeditor.fields import RichTextField
 class Post(models.Model):
     title = models.CharField(max_length=100)
     date_posted  = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)  # 刪除使用者時也刪除其貼文，但刪除貼文不會刪除使用者
     other = models.CharField(max_length=200)
     content = RichTextField(blank=True,null=True)
     #content = models.TextField()
