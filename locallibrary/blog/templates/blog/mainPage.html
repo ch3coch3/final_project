@@ -118,7 +118,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
-                            <p class="card-text">{{ post.content }}</p>
+                            <p class="card-text">{{ post.content|safe }}</p>
                             <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
                         </div>
                         <div class="input-group mb-3">
