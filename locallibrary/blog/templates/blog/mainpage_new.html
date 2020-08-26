@@ -1,6 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
-
+{% include 'blog/searchForm.html' %}
+<p class='inlineBlock'></p>
     <div class="row">
         <div class="col-12 col-md-2">
             <div class="card align-self-start absolute" style="width: 10rem;">
@@ -15,38 +16,6 @@
             </div>
         </div>
         <div class="col-12 col-md-10">
-            <div class="row bar sticky-top">
-                <div class="col-6 col-md-3">
-                    <div class="input-group mb-2">
-                        <input type="text" class="form-control" placeholder="國家"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button"
-                                id="button-addon2">search</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="input-group mb-2">
-                        <input type="text" class="form-control" placeholder="發文日期"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button"
-                                id="button-addon2">search</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="input-group mb-2">
-                        <input type="text" class="form-control" placeholder="學校"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button"
-                                id="button-addon2">search</button>
-                        </div>
-                    </div>
-                </div>
-              </div>
             <br><br><br>            
             {% for post in posts %}
             <article class="media content-section bg-light">
