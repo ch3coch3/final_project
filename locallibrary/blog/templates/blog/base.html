@@ -2,6 +2,10 @@
 <!doctype html>
 <html lang="en">
     <style>
+        .col-12 {
+        z-index: 99;
+        }
+
       div.absolute {
         position: absolute;
         position: fixed;
@@ -37,82 +41,172 @@
     </style>
 <!--發問框設計-->
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    button:hover {
+      opacity: 0.8;
+    }
+    
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      padding-top: 60px;
+    }
+    
+    /* Modal Content/Box */
+    .modal-content1 {
+      background-color: #fefefe;
+      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+      border: 1px solid #888;
+      width: 50%; /* Could be more or less, depending on screen size */
+    }
+    
+    /* Add Zoom Animation */
+    .animate {
+      -webkit-animation: animatezoom 0.6s;
+      animation: animatezoom 0.6s
+    }
+    
+    @-webkit-keyframes animatezoom {
+      from {-webkit-transform: scale(0)} 
+      to {-webkit-transform: scale(1)}
+    }
+      
+    @keyframes animatezoom {
+      from {transform: scale(0)} 
+      to {transform: scale(1)}
+    }
+    
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+         display: block;
+         float: none;
+      }
+    }
 
-button:hover {
-  opacity: 0.8;
-}
+    /*聊天室設計*/
+        .chat {
+        float: left;
+        overflow: hidden;
+        }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
-}
+        .chat-content1 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 999;
+        position: fixed;
+        }
 
-/* Modal Content/Box */
-.modal-content1 {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
-}
+        .chat-content1 a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        }
 
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 25px;
-  top: 0;
-  color: #000;
-  font-size: 35px;
-  font-weight: bold;
-}
+        .chat:hover .chat-content1 {
+        display: block;
+        }
 
-.close:hover,
-.close:focus {
-  color: red;
-  cursor: pointer;
-}
+        /* chat button */
+        .chat .chatbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 7px 14px;
+        background-color: transparent;
+        font-family: inherit; /* Important for vertical align on mobile phones */
+        margin: 0; /* Important for vertical align on mobile phones */
+        }
 
-/* Add Zoom Animation */
-.animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
-}
+        /* Add a background color to navbar links on hover */
+        .chat:hover .chatbtn {
+        background-color: transparent;
+        }
 
-@-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)} 
-  to {-webkit-transform: scale(1)}
-}
-  
-@keyframes animatezoom {
-  from {transform: scale(0)} 
-  to {transform: scale(1)}
-}
+    /* 聊天室朋友圖像設計*/
+        .friend{
+            background-color: transparent;
+            border: none;
+            color: black;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 160px;
+            text-align: left;
+        }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
+        .friend:hover{
+            background-color: #d0d0d0;
+        }
+
+    /* 聊天室跳出設計*/
+        .chat-popup1 {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 200px;
+        border: 3px solid #09a7a7;
+        z-index: 99999;
+        background-color: #09a7a7;
+        color: white;
+        }
+
+        .talk_show{
+            width:300px;
+            height:300px;
+            border:1px solid #666;
+            background:#fff;
+            margin:10px auto 0;
+            overflow:auto;
+        }
+        .talk_input{
+            width:300px;
+            margin:10px auto 0;
+        }
+
+        .talk_sub{
+            width:56px;
+            height:30px;
+            float:right;
+            margin-left:10px;
+            border:none;
+            background-color: white;
+        }
+
+        .talk_word{
+            width:230px;
+        }   
+
+        .close1 {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        }
+
+        .close1:hover,
+        .close1:focus {
+        color: #adadad;
+        cursor: pointer;
+        }
 </style>
 
 <head>
@@ -154,9 +248,19 @@ button:hover {
         </div>
         <div>
             <ul class="nav justify-content-end">
-                <li class="nav-item active">
-                    <a class="nav-link  text-white" href="#" >聊天室<span class="sr-only">(current)</span></a>
-                </li>
+                <div class="chat">
+                    <button class="chatbtn">聊天室 
+                        <i class="fa fa-caret-down"></i>
+                      </button>
+                        <div class="chat-content1">
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小明
+                            </button><br><br>
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小美
+                            </button><br><br>
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小黑
+                            </button>
+                        </div>
+                </div>
                 {% if user.is_authenticated %}
                     <li class="nav-item active"></li>
                         <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
@@ -181,6 +285,21 @@ button:hover {
             </ul>
         </div>
     </nav>
+    <!--聊天室彈出-->
+    <div class="chat-popup1" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Chat</h1>
+            <span onclick="closeForm()" class="close1" title="Close Modal">&times;</span>
+            <div class="talk_con">
+                <div class="talk_show" id="words">
+                </div>
+                <div class="talk_input">
+                    <input type="text" class="talk_word" id="talkwords">
+                    <input type="button" value="傳送" class="talk_sub" id="talksub">
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="container"> 
         {% if messages %}
             {% for message in messages %}
@@ -208,6 +327,15 @@ button:hover {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+        }
+    </script>
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+            
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
         }
     </script>
 </body>
