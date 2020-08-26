@@ -124,12 +124,11 @@ button:hover {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    
-    {% if title %}
-        <title>Django Blog - {{ title }}</title>
-    {% else %}
-        <title>Django Blog</title>
-    {% endif %}
+    <title>
+    {% block title %}
+        Exchange
+    {% endblock %}
+    </title>
 </head>
 
 <body>
@@ -160,7 +159,7 @@ button:hover {
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="{% url 'post-create' %}">New Post<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"></li>
                         <a class="nav-link  text-white" href="{% url 'profile' %}">Profile<span class="sr-only">(current)</span></a>
