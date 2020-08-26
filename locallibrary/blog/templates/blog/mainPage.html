@@ -10,15 +10,15 @@
                     <li class="list-group-item"><a href="#">America</a></li>
                     <li class="list-group-item"><a href="#">Asia</a></li>
                     <li class="list-group-item"><a href="#">Europe</a></li>
-                    <li class="list-group-item"><a href="#">Oceania</a></li>
+                    <li class="list-group-item"><a href="#">Ocenia</a></li>
                 </ul>
             </div>
         </div>
         <!--搜尋-->
         <div class="col">
             <div class="container-fluid">
-                <div class="row bar sticky-top">
-                    <div class="col">
+                <div class="row-6 form-inline">
+                    <div class="col-4">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="國家"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-4">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="發文日期"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-4">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="學校"
                                 aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -100,7 +100,7 @@
                                     <div class="col">
                                         <ul class="list-group list-group-horizontal float-right">
                                             <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">{{ post.date_posted|date:"F d, Y" }}</li>
+                                            <li class="list-group-item threeblock">{{ post.data_posted|date:"F d, Y" }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
-                            {{ post.content|safe }}
+                            <p class="card-text">{{ post.content }}</p>
                             <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
                         </div>
                         <div class="input-group mb-3">
@@ -124,4 +124,4 @@
             <br>
         </div>
     </div>
-{% endblock %}
+{% endblock content %}
