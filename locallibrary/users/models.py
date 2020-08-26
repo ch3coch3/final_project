@@ -9,7 +9,7 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def save(self):
+    def save(self, force_insert=False, force_update=False, using=None):
         super().save()
 
         img = Image.open(self.image.path)
