@@ -28,6 +28,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
+                ('content', models.TextField()),
                 ('date_posted', models.DateTimeField(default=django.utils.timezone.now)),
                 ('other', models.CharField(max_length=200)),
                 ('content', ckeditor_uploader.fields.RichTextUploadingField(blank=True, null=True)),

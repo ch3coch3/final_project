@@ -19,16 +19,13 @@ def home(request):
     image = models.ImageField(default = 'default.jpg', upload_to='page_pics')
     return render(request, 'blog/mainPage_new.html',context)
 
-# 管理貼文呈現的狀態
 class PostListView(ListView):
     model = Post                         # 以Post為基礎建立
     template_name = 'blog/mainPage_new.html' # <app>/<model>_<viewtype>.html 尋找樣板顯示(顯示主頁)
     context_object_name = 'posts'
-    ordering = ['-date_posted']          # 讓貼文以時間排序
-    # paginate_by = 2                    # 每頁指顯示兩個貼文
+    ordering = ['-date_posted']
+    paginate_by = 2
 
-
-# 管理點入貼文後的詳細資訊
 class PostDetailView(DetailView):
     model = Post
     
@@ -40,10 +37,9 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    form_class = PostForm
-    template_name = 'blog/update_post.html'
+    fields = ['title', 'content']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
