@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+    <style>
+    /*新聞區在最下面*/
+      .col{
+        z-index: 998;
+      }
+
+      div.absolute {
+        position: absolute;
+        position: fixed;
+        overflow: auto;
+      }
+      div.bar {
+        list-style-type: none;
+        overflow: auto;
+        position: fixed;
+        top:42pt;
+        width: 80%;
+        background-color: white;
+      }
+      li.threeblock{
+        background-color: white;
+        font-size: 16px;
+      }
+      div.name{
+          font-size:30px;
+          font-weight: bold;
+      }
+      .nav link{
+          color:white;
+      }
+    /* 篩選條件設計 */
+    .dropdown1 {
+        float: left;
+        overflow: hidden;
+        }
+
+        /* Dropdown button */
+        .dropdown1 .dropbtn1 {
+        font-size: 16px;
+        border: solid;
+        border-color: #a1a1a1;
+        outline: 1px;
+        color: black;
+        padding: 5px 10px;
+        background-color: white;
+        font-family: inherit; /* Important for vertical align on mobile phones */
+        margin: 0; /* Important for vertical align on mobile phones */
+        }
+
+        /* Add a background color to navbar links on hover */
+        .dropdown1:hover .dropbtn1 {
+        background-color: transparent;
+        }
+
+        /* Dropdown content (hidden by default) */
+        .dropdown-content1 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        position: fixed;
+        }
+        /* Add a grey background color to dropdown links on hover */
+        .dropdown-content1 a:hover {
+        background-color: #ddd;
+        }
+
+        /* Show the dropdown menu on hover */
+        .dropdown1:hover .dropdown-content1 {
+        display: block;
+        }
+    /*聊天室設計*/
+    .chat {
+        float: left;
+        overflow: hidden;
+        }
+
+        .chat-content1 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 999;
+        position: fixed;
+        }
+
+        .chat-content1 a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        }
+
+        .chat:hover .chat-content1 {
+        display: block;
+        }
+
+        /* chat button */
+        .chat .chatbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 7px 14px;
+        background-color: transparent;
+        font-family: inherit; /* Important for vertical align on mobile phones */
+        margin: 0; /* Important for vertical align on mobile phones */
+        }
+
+        /* Add a background color to navbar links on hover */
+        .chat:hover .chatbtn {
+        background-color: transparent;
+        }
+
+    /* 聊天室朋友圖像設計*/
+        .friend{
+            background-color: transparent;
+            border: none;
+            color: black;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 160px;
+            text-align: left;
+        }
+
+        .friend:hover{
+            background-color: #d0d0d0;
+        }
+
+    /* 聊天室跳出設計*/
+        .chat-popup1 {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 200px;
+        border: 3px solid #09a7a7;
+        z-index: 99999;
+        background-color: #09a7a7;
+        color: white;
+        }
+
+        .talk_show{
+            width:300px;
+            height:300px;
+            border:1px solid #666;
+            background:#fff;
+            margin:10px auto 0;
+            overflow:auto;
+        }
+        .talk_input{
+            width:300px;
+            margin:10px auto 0;
+        }
+
+        .talk_sub{
+            width:56px;
+            height:30px;
+            float:right;
+            margin-left:10px;
+            border:none;
+            background-color: white;
+        }
+
+        .talk_word{
+            width:230px;
+        }   
+
+        .close1 {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        }
+
+        .close1:hover,
+        .close1:focus {
+        color: #adadad;
+        cursor: pointer;
+        }
+
+        /*會員資料展開頁面設計*/
+        .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #09a7a7;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        }
+
+        .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        color: #fff;
+        }
+
+        @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        }
+    </style>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>News</title>
+</head>
+
+<body>
+    <!--上排左邊設定-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
+        <a class="navbar-brand" href="#">
+            <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="ˇ" class="d-inline-block align-center"
+                alt="" loading="lazy">
+            Exchange
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">News <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Ask <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+        <!--上排右邊設定-->
+        <div>
+            <ul class="nav justify-content-end">
+                <div class="chat">
+                    <button class="chatbtn">聊天室 
+                        <i class="fa fa-caret-down"></i>
+                      </button>
+                        <div class="chat-content1">
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小明
+                            </button><br><br>
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小美
+                            </button><br><br>
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小黑
+                            </button>
+                        </div>
+                </div>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#">Log in<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#">Sign up<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#" >中/EN<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#" onclick="openNav()">會員資料<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+        <!--會員資料展開頁-->
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col col-lg-2">
+                <!--左邊看板選單-->
+                <div class="card align-self-start absolute" style="width: 10rem;">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="#">Taiwan</a></li>
+                        <li class="list-group-item"><a href="#">Africa</a></li>
+                        <li class="list-group-item"><a href="#">America</a></li>
+                        <li class="list-group-item"><a href="#">Asia</a></li>
+                        <li class="list-group-item"><a href="#">Europe</a></li>
+                        <li class="list-group-item"><a href="#">Ocenia</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--搜尋-->
+            <div class="col">
+                <div class="container-fluid">
+                    <div class="row bar sticky-top">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="國家"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="button-addon2">search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="發文日期"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="button-addon2">search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="學校"
+                                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="button-addon2">search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--篩選條件設定-->
+                        <div class="dropdown1">
+                            <button class="dropbtn1">篩選條件
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content1">
+                                <input type="checkbox" id="con1" name="con1" value="travel">
+                                <label for="conl"> 暑假</label><br>
+                                <input type="checkbox" id="con2" name="con2" value="class">
+                                <label for="con2"> 寒假</label><br>
+                                <input type="checkbox" id="con4" name="con4" value="money">
+                                <label for="con4">遊學團</label><br>
+                                <input type="checkbox" id="con5" name="con5" value="food">
+                                <label for="con5">暑期課程</label><br>
+                                <input type="checkbox" id="con6" name="con6" value="culture">
+                                <label for="con6">寒假課程</label><br>
+                                <input type="checkbox" id="con7" name="con7" value="fly">
+                                <label for="con7">工讀</label><br>
+                                <input type="checkbox" id="con8" name="con8" value="campus">
+                                <label for="con8">語言學習</label><br>
+                            </div>
+                          </div>
+            </div>
+                    <br>
+                    <br>
+                    <br>
+                    <!--新聞區-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col name">
+                                                2021韓國首爾大學暑期課程
+                                            </div>
+                                            <div class="col">
+                                                <ul class="list-group list-group-horizontal float-right">
+                                                    <li class="list-group-item threeblock">暑假</li>
+                                                    <li class="list-group-item threeblock">暑期課程</li>
+                                                    <li class="list-group-item threeblock">韓國</li>
+                                                    <li class="list-group-item threeblock">首爾大學</li>
+                                                    <li class="list-group-item threeblock">2020/**/**</li>
+                                                  </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Special title treatment</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
+                                    <div class="col text-right"><a href="#">閱讀全文</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!--我是新聞分隔線-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col name">
+                                                2021美國暑期工讀
+                                            </div>
+                                            <div class="col">
+                                                <ul class="list-group list-group-horizontal float-right">
+                                                    <li class="list-group-item threeblock">暑假</li>
+                                                    <li class="list-group-item">工讀</li>
+                                                    <li class="list-group-item">美國</li>                                                   
+                                                    <li class="list-group-item">2020/**/**</li>
+                                                  </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Special title treatment</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
+                                    <div class="col text-right"><a href="#">閱讀全文</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!--我是新聞分隔線-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col">
+                                                2021英國遊學團
+                                            </div>
+                                            <div class="col">
+                                                <ul class="list-group list-group-horizontal float-right">
+                                                    <li class="list-group-item threeblock">暑假</li>
+                                                    <li class="list-group-item threeblock">遊學團</li>
+                                                    <li class="list-group-item threeblock">英國</li>
+                                                    <li class="list-group-item threeblock">2020/**/**</li>
+                                                  </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Special title treatment</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
+                                    <div class="col text-right"><a href="#">閱讀全文</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <!--我是新聞分隔線-->
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col">
+                                                2021紐西蘭遊學團
+                                            </div>
+                                            <div class="col">
+                                                <ul class="list-group list-group-horizontal float-right">
+                                                    <li class="list-group-item threeblock">暑假</li>
+                                                    <li class="list-group-item threeblock">遊學團</li>
+                                                    <li class="list-group-item threeblock">紐西蘭</li>
+                                                    <li class="list-group-item threeblock">2020/**/**</li>
+                                                  </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Special title treatment</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additionalcontent.</p>
+                                    <div class="col text-right"><a href="#">閱讀全文</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--聊天室彈出-->
+    <div class="chat-popup1" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Chat</h1>
+            <span onclick="closeForm()" class="close1" title="Close Modal">&times;</span>
+            <div class="talk_con">
+                <div class="talk_show" id="words">
+                </div>
+                <div class="talk_input">
+                    <input type="text" class="talk_word" id="talkwords">
+                    <input type="button" value="傳送" class="talk_sub" id="talksub">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <!--聊天室java-->
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+                
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+    <!--會員資料展開頁java-->
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "280px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+
+</html>

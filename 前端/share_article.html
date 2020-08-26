@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Article</title>
+    <style>
+        /*聊天室設定 */
+        .chat {
+        float: left;
+        overflow: hidden;
+        }
+
+        .chat-content1 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 999;
+        position: fixed;
+        }
+
+        .chat-content1 a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        }
+
+        .chat:hover .chat-content1 {
+        display: block;
+        }
+
+        /* chat button */
+        .chat .chatbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 7px 14px;
+        background-color: transparent;
+        font-family: inherit; /* Important for vertical align on mobile phones */
+        margin: 0; /* Important for vertical align on mobile phones */
+        }
+
+        /* Add a background color to navbar links on hover */
+        .chat:hover .chatbtn {
+        background-color: transparent;
+        }
+
+        /* 聊天室朋友圖像設定*/
+        .friend{
+            background-color: transparent;
+            border: none;
+            color: black;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 160px;
+            text-align: left;
+        }
+
+        .friend:hover{
+            background-color: #d0d0d0;
+        }
+
+        /* 聊天室跳出 */
+        .chat-popup1 {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 200px;
+        border: 3px solid #09a7a7;
+        z-index: 99999;
+        background-color: #09a7a7;
+        color: white;
+        }
+
+        .talk_show{
+            width:300px;
+            height:300px;
+            border:1px solid #666;
+            background:#fff;
+            margin:10px auto 0;
+            overflow:auto;
+        }
+        .talk_input{
+            width:300px;
+            margin:10px auto 0;
+        }
+
+        .talk_sub{
+            width:56px;
+            height:30px;
+            float:right;
+            margin-left:10px;
+            border:none;
+            background-color: white;
+        }
+
+        .talk_word{
+            width:230px;
+        }   
+
+        .close1 {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        }
+
+        .close1:hover,
+        .close1:focus {
+        color: #adadad;
+        cursor: pointer;
+        }
+
+        /*留言區設計*/
+        .textarea{
+            border-color: #bebebe;
+        }
+
+        /*留言按鈕設計*/
+        .open-button {
+        background-color: white;
+        color: black;
+        border-color: #bebebe;
+        }
+
+        /*內文title大小設計*/
+        .blog-post-title{
+            font-size: 50px;
+        }
+
+        /*會員資料展開頁面設計*/
+        .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color: #09a7a7;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+        }
+
+        .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        color: #fff;
+        }
+
+        @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+        }
+    </style>
+</head>
+<body>
+    <!--上排左邊-->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
+        <a class="navbar-brand" href="#">
+            <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="35" class="d-inline-block align-center"
+                alt="" loading="lazy">
+            Exchange
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">News <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Ask <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    <!--上排右邊-->
+        <div>
+            <ul class="nav justify-content-end">
+                <div class="chat">
+                    <button class="chatbtn">聊天室 
+                        <i class="fa fa-caret-down"></i>
+                      </button>
+                        <div class="chat-content1">
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小明</button><br><br>
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小美</button><br><br>
+                            <button class="friend" type="button" onclick="openForm()"><img src="plus.png" width="20" height="20">小黑</button>
+                        </div>
+                </div>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#">Log in<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#">Sign up<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#" >中/EN<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#" onclick="openNav()">會員資料<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+         <!--會員資料展開頁-->
+         <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        </div>
+    </nav>
+
+    <!--內文-->
+    <div class="container">
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8 blog-main">
+              <h2 class="blog-post-title">Title</h2>
+                <a href="#">中國北京師範大學</a> <a>交換時間：2019/8/20-2020/8/20</a><br>
+                <a>XXX系 X年級</a> <a href="#">吳玉惠</a>
+              </p>
+              <hr>
+              <p>
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+
+                Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                
+                Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                
+                Heading
+                Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                
+                Sub-heading
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                
+                Example code block
+                Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
+                
+                Sub-heading
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                Donec id elit non mi porta gravida at eget metus.
+                Nulla vitae elit libero, a pharetra augue.
+                Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+                
+                Vestibulum id ligula porta felis euismod semper.
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                Maecenas sed diam eget risus varius blandit sit amet non magna.
+                Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
+                
+                Another blog post
+                December 23, 2013 by Jacob
+                
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+                
+                Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                
+                Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                
+                Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                
+                New feature
+                December 14, 2013 by Chris
+                
+                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                Donec id elit non mi porta gravida at eget metus.
+                Nulla vitae elit libero, a pharetra augue.
+                Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                
+                Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.
+              </p>
+              <hr>
+              <h3><strong>照片分享</strong></h3>
+                <img src="01.jpg" alt="Girl in a jacket" width="100%" height="500">
+                <img src="02.jpg" alt="Girl in a jacket" width="100%" height="500">
+                <img src="03.jpg" alt="Girl in a jacket" width="100%" height="500">
+              <hr>
+              <h3><strong>影片分享</strong></h3>
+              <iframe width="100%" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+              <hr>
+              <h3><strong>留言區</strong></h3>
+                <textarea rows="4" cols="97" name="comment" form="usrform">告訴我你的感想吧！</textarea>
+                <br>
+                <div class="col text-right">
+                    <button class="open-button">提交</button>
+                </div>
+                
+
+
+          </div>
+          <div class="col-2">
+          </div>
+    </div>
+
+    <!--聊天室彈出-->
+    <div class="chat-popup1" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Chat</h1>
+            <span onclick="closeForm()" class="close1" title="Close Modal">&times;</span>
+            <div class="talk_con">
+                <div class="talk_show" id="words">
+                </div>
+                <div class="talk_input">
+                    <input type="text" class="talk_word" id="talkwords">
+                    <input type="button" value="傳送" class="talk_sub" id="talksub">   
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <!--聊天室java-->
+    <script>
+        function openForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+        
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+     <!--會員資料展開頁java-->
+     <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "280px";
+        }
+        
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+</body>
+</html>
