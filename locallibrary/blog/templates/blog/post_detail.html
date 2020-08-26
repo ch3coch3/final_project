@@ -25,6 +25,26 @@
                     </div>
                     <h2 class="article-title">{{ object.title }}</h2>
                     {{ post.content|safe }}
+                     <!-- comment -->
+                
+                    <hr>
+                    <h2>Comment</h2>
+
+                    {% if not post.comments.all %}
+                        No comments yet <a href=" {% url 'add_comment' post.pk %} ">add one </a>
+                    {% else %}
+                    <a href=" {% url 'add_comment' post.pk %} ">Add comment</a>
+                    <br>
+                    <br>
+                        {% for comment in post.comments.all %}
+                        {{ comment.body }}---------
+                        <strong>
+                            by <a href='#'>{{ comment.name }}</a>-
+                            {{ comment.date_added }}
+                        </strong>
+                        <br>     
+                        {% endfor %}
+                    {%　endif %}
                 </div>
             </article>
         </div>
