@@ -95,7 +95,7 @@
                             {{ object.author}}
                         </a>
                         <small class="text-muted">
-                            {{ object.data_posted|date:"F d, Y" }}
+                            {{ object.date_posted|date:"F d, Y" }}
                         </small>
                     </div>
                     {% if object.author == user %}
