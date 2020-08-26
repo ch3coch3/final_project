@@ -9,6 +9,7 @@ from django.views.generic import (
 )
 from .models import Post
 from .forms import PostForm
+from django.db.models.query_utils import Q
 
 
 def home(request):
@@ -77,4 +78,10 @@ class AddPostView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
     fields = ['title','content']
+
+def articleSearch (request):
+    searchTerm=request.GET.get('searchTerm')
+    articles=Post.objects.filter(Q(title__icontains=searchTerm))
+    context={'articles':articles, 'searchTerm': searchTerm}
+    return render(request, 'blog/articleSearch.html', context)
     

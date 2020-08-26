@@ -1,0 +1,26 @@
+ <style>
+     .form-inline{
+         position: fixed;
+         z-index: 999;  /*圖層. 999->浮到最上面*/
+         background-color: white;
+     }
+ </style>
+ <!-- Required meta tags -->
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class="container-fluid">
+    <div class='row'>
+        <div class='col-9'></div>
+        <div class='col'>
+            <form class='form-inline' action="{% url 'articleSearch' %}">
+                <input type="text" class="form-control  mb-2 mr-sm-2" placeholder="Search" name='searchTerm'>
+                <input type='submit' class="btn btn-outline-secondary mb-2" value='查詢'>
+            </form>
+        </div>
+    </div>
+</div>

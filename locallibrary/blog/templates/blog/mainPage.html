@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
+{% include 'blog/searchForm.html' %}
+<p class='inlineBlock'></p>
     <div class="row">
         <div class="col col-lg-2">
             <!--左邊看板選單-->
@@ -18,36 +20,6 @@
         <div class="col">
             <div class="container-fluid">
                 <div class="row bar sticky-top">
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="國家"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="發文日期"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="學校"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
                     <!--發問跳出視窗-->
                     <div class="ask">
                         <button class="ask1" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><img src="plus.png" width="80" height="80" data-toggle="tooltip" data-placement="top" title="發問"></button>
