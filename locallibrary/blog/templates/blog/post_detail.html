@@ -1,94 +1,12 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
+{% include 'blog/searchForm.html' %}
+<p class='inlineBlock'></p>
     <div class="row">
-        <div class="col col-lg-2">
-            <!--左邊看板選單-->
-            <div class="card align-self-start absolute" style="width: 10rem;">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><a href="#">Taiwan</a></li>
-                    <li class="list-group-item"><a href="#">Africa</a></li>
-                    <li class="list-group-item"><a href="#">America</a></li>
-                    <li class="list-group-item"><a href="#">Asia</a></li>
-                    <li class="list-group-item"><a href="#">Europe</a></li>
-                    <li class="list-group-item"><a href="#">Ocenia</a></li>
-                </ul>
-            </div>
-        </div>
-        <!--搜尋-->
-        <div class="col">
-            <div class="container-fluid">
-                <div class="row bar sticky-top">
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="國家"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="發文日期"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="學校"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--發問跳出視窗-->
-                    <div class="ask">
-                        <button class="ask1" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><img src="plus.png" width="80" height="80" data-toggle="tooltip" data-placement="top" title="發問"></button>
-                    </div>
-                    <div id="id01" class="modal">
-                        <form class="modal-content1 animate" action="/action_page.php" method="post">
-                            <div class = "top">
-                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;
-                                </span>
-                            </div>
-                            <div class = "container">
-                                    <label for = "title1">標題</label>
-                                    <input type="text" class = "form-control" id="title1" placeholder value required>
-                                    <label for = "article">內文</label><br>
-                                    <textarea cols="79" rows="5">
-                                    </textarea>
-                            </div>
-                            <div class="container">
-                                <label for = "type">發文類別</label><br>
-                                <form>
-                                    <input type="radio" id="ask2" name="ask2" value="ask2">
-                                    <label for="male">請益</label>
-                                    <input type="radio" id="share1" name="share1" value="share1">
-                                    <label for="female">分享</label>
-                                </form><br>
-                                <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary bg-info">發文</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    
-                </div>
-            </div>     
-            <br>
-            <br>
-            <br>
-            <!--討論區-->
+        <div class="col-2"></div>
+        <div class="col col-8">
             <article class="media content-section">
-                <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="{{ post.author }}">
                 <div class="media-body">
                     <div class="article-metadata">
                         <a class="mr-2 "href="#">
@@ -97,13 +15,14 @@
                         <small class="text-muted">
                             {{ object.date_posted|date:"F d, Y" }}
                         </small>
-                    </div>
-                    {% if object.author == user %}
+                        {% if object.author == user %}
                         <div>
                             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
                             <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
                         </div>
-                    {% endif %}
+                        <hr>
+                        {% endif %}
+                    </div>
                     <h2 class="article-title">{{ object.title }}</h2>
                     {{ post.content|safe }}
                 </div>

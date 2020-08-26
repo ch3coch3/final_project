@@ -1,0 +1,80 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block heading %}查詢結果{% endblock %}
+{% block css %}
+<link rel='stylesheet' href="{% static 'article/css/article.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+</head>
+{% include 'blog/searchForm.html' %}
+<p class='inlineBlock'></p>
+<br><br>
+<hr>
+<style>
+    p{
+        text-align:center;
+    }
+    table{
+        margin-left: 300px;
+        margin-right: auto;
+        text-align:center;
+    }
+</style>
+<body>
+    <div class="col col-lg-2">
+        <!--左邊看板選單-->
+        <div class="card align-self-start absolute" style="width: 10rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href="#">Taiwan</a></li>
+                <li class="list-group-item"><a href="#">Africa</a></li>
+                <li class="list-group-item"><a href="#">America</a></li>
+                <li class="list-group-item"><a href="#">Asia</a></li>
+                <li class="list-group-item"><a href="#">Europe</a></li>
+                <li class="list-group-item"><a href="#">Ocenia</a></li>
+            </ul>
+        </div>
+    </div>
+        <!--發問跳出視窗-->
+        <div class="ask">
+            <button class="ask1" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><img src="plus.png" width="80" height="80" data-toggle="tooltip" data-placement="top" title="發問"></button>
+        </div>
+        <div id="id01" class="modal">
+            <form class="modal-content1 animate" action="/action_page.php" method="post">
+                <div class = "top">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;
+                    </span>
+                </div>
+                <div class = "container">
+                        <label for = "title1">標題</label>
+                        <input type="text" class = "form-control" id="title1" placeholder value required>
+                        <label for = "article">內文</label><br>
+                        <textarea cols="79" rows="5">
+                        </textarea>
+                </div>
+        </div>
+    </div>   
+    {% if not articles %}
+    <p>查無資料</p>
+    {% else %}
+        <table class='table table-striped table-hover' style='width: 67%' id="mydatatable">
+            <thead>
+                <tr><th>標題</th><th>發文時間</th></tr>
+            </thead>
+            <tbody>
+                {% for article in articles %} 
+                <tr>
+                    <td><a href="{% url 'post-detail' article.id %}">{{ article.title }}</a></td>
+                    <td>{{ article.date_posted|date:"F d, Y" }}</td>
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    {% endif %}
+
+</body>
+{% endblock %}

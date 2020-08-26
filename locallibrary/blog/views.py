@@ -9,6 +9,7 @@ from django.views.generic import (
 )
 from .models import Post
 from .forms import PostForm
+from django.db.models.query_utils import Q
 
 
 def home(request):
@@ -25,7 +26,7 @@ class PostListView(ListView):
     template_name = 'blog/mainpage_new.html' # <app>/<model>_<viewtype>.html 尋找樣板顯示(顯示主頁)
     context_object_name = 'posts'
     ordering = ['-date_posted']          # 讓貼文以時間排序
-    # paginate_by = 2                    # 每頁指顯示兩個貼文
+    paginate_by = 4                    # 每頁只顯示四個貼文
 
 
 # 管理點入貼文後的詳細資訊
@@ -77,4 +78,10 @@ class AddPostView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
     fields = ['title','content']
+
+def articleSearch (request):
+    searchTerm=request.GET.get('searchTerm')
+    articles=Post.objects.filter(Q(title__icontains=searchTerm))
+    context={'articles':articles, 'searchTerm': searchTerm}
+    return render(request, 'blog/articleSearch.html', context)
     

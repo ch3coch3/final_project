@@ -1,5 +1,7 @@
 {% extends "blog/base.html" %}
 {% block content %}
+{% include 'blog/searchForm.html' %}
+<p class='inlineBlock'></p>
     <div class="row">
         <div class="col col-lg-2">
             <!--左邊看板選單-->
@@ -18,36 +20,6 @@
         <div class="col">
             <div class="container-fluid">
                 <div class="row bar sticky-top">
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="國家"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="發文日期"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="學校"
-                                aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button"
-                                    id="button-addon2">search</button>
-                            </div>
-                        </div>
-                    </div>
                     <!--發問跳出視窗-->
                     <div class="ask">
                         <button class="ask1" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><img src="plus.png" width="80" height="80" data-toggle="tooltip" data-placement="top" title="發問"></button>
@@ -55,8 +27,6 @@
                     <div id="id01" class="modal">
                         <form class="modal-content1 animate" action="/action_page.php" method="post">
                             <div class = "top">
-                                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;
-                                </span>
                             </div>
                             <div class = "container">
                                     <label for = "title1">標題</label>
@@ -69,12 +39,12 @@
                                 <label for = "type">發文類別</label><br>
                                 <form>
                                     <input type="radio" id="ask2" name="ask2" value="ask2">
-                                    <label for="male">請益</label>
-                                    <input type="radio" id="share1" name="share1" value="share1">
-                                    <label for="female">分享</label>
+                                    <label for="ask2">請益</label>
+                                    <input type="radio" id="share1" name="ask2" value="share1">
+                                    <label for="share1">分享</label>
                                 </form><br>
                                 <div class="col text-center">
-                                    <button type="submit" class="btn btn-primary bg-info">發文</button>
+                                    <button type="submit" class="btn btn-primary bg-info">送出</button>
                                 </div>
                             </div>
                         </form>
@@ -120,7 +90,30 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
+            <!-------換頁-------->
+            {% endfor %}<br>
+            {% if is_paginated %}
+
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+
+
+            {% endif %}
             <br>
         </div>
     </div>
