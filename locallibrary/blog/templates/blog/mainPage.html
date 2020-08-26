@@ -100,7 +100,7 @@
                                     <div class="col">
                                         <ul class="list-group list-group-horizontal float-right">
                                             <li class="list-group-item threeblock">請益</li>
-                                            <li class="list-group-item threeblock">{{ post.data_posted|date:"F d, Y" }}</li>
+                                            <li class="list-group-item threeblock">{{ post.date_posted|date:"F d, Y" }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><a href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h5>
-                            <p class="card-text">{{ post.content }}</p>
+                            {{ post.content|safe }}
                             <a href="#" class="btn btn-primary float-right bg-info">閱讀全文</a>
                         </div>
                         <div class="input-group mb-3">
@@ -124,4 +124,4 @@
             <br>
         </div>
     </div>
-{% endblock content %}
+{% endblock %}

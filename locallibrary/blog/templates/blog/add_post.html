@@ -1,0 +1,15 @@
+<!--新的發文頁面-->
+{% extends "blog/base.html" %}
+{% block title %}Add Post{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+           <h1>Add Post</h1>
+           <br/><br/>
+           <div class="form-group">
+               <form method="POST">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button class='btn btn-info'>Post</button>
+                </div>
+{% endblock content %}

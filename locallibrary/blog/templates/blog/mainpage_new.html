@@ -1,0 +1,69 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-12 col-md-2">
+            <div class="card align-self-start absolute" style="width: 10rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="#">Taiwan</a></li>
+                    <li class="list-group-item"><a href="#">Africa</a></li>
+                    <li class="list-group-item"><a href="#">America</a></li>
+                    <li class="list-group-item"><a href="#">Asia</a></li>
+                    <li class="list-group-item"><a href="#">Europe</a></li>
+                    <li class="list-group-item"><a href="#">Oceania</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-md-10">
+            <div class="row bar sticky-top">
+                <div class="col-6 col-md-3">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" placeholder="國家"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"
+                                id="button-addon2">search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" placeholder="發文日期"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"
+                                id="button-addon2">search</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" placeholder="學校"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button"
+                                id="button-addon2">search</button>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            <br><br><br>            
+            {% for post in posts %}
+            <article class="media content-section bg-light">
+                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="25" height = "25">
+                <div class="media-body">
+                  <div class="article-metadata">
+                    <h5><a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
+                    <small><small class="text-muted float-right">{{ post.date_posted }}</small></small><hr>
+                  </div></h5>
+                  <h2 class="article-title text-secondary">{{ post.title }}</h2>
+                  <p class="article-content">{{ post.content|safe|truncatechars_html:100 }}</p>
+                  <a href="{% url 'post-detail' post.id %}" class="text-secondary float-right">(see more...)</a>
+                </div>
+              </article>
+              <br>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %} 
