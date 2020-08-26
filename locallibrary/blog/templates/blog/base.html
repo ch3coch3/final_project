@@ -1,73 +1,7 @@
 {% load static %}
-{% load crispy_forms_tags %}
 <!doctype html>
 <html lang="en">
     <style>
-    /*會員資料展開頁面設計*/
-    .button {
-        background-color: rgb(219, 209, 209);
-        border: none;
-        color: black;
-        padding: 1px 60px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        margin: 4px 20px;
-        cursor: pointer;
-        border-radius: 20px;
-        font-family: normal;
-        font-size: semi-expanded;
-        font-size: 25px;
-        
-}
-    .button:hover {
-    background-color: #f1f1f1;
-    }
-     .footer{
-        position: absolute;
-        bottom: 0;
-        right:0;
-        font-size: 30px;
-        
-        
-        
-     }
-     .Logoutsize{
-        font-size:15px;
-     }
-    
-     .sidenav {
-        /* border-width: 3px;
-        border-style:solid;
-        border-color: #09a7a7;  */
-        margin-top:55px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        height: 95%;
-        width: 0;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        right: 0;
-        background-color:rgb(230, 223, 223);
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 30px;
-        
-        }
-
-      .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-        color: #fff;
-        }
-     
-        @media screen and (max-height: 450px) {
-        .sidenav {padding-top: 15px;}
-        .sidenav a {font-size: 18px;}
-      }
       div.absolute {
         position: absolute;
         position: fixed;
@@ -92,10 +26,6 @@
       .nav link{
           color:white;
       }
-
-      .nav link a{
-          font-size: large;
-      }
       .ask1{
           background-color: white;
           border: none;
@@ -103,17 +33,9 @@
           bottom: 0;
           right: 0;
           border-radius: 50%;
-      }    
-    
-
-
+      }
     </style>
-
-    
-
 <!--發問框設計-->
-
-
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -191,7 +113,6 @@ button:hover {
      width: 100%;
   }
 }
-
 </style>
 
 <head>
@@ -203,15 +124,14 @@ button:hover {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    
-    {% if title %}
-        <title>Django Blog - {{ title }}</title>
-    {% else %}
-        <title>Django Blog</title>
-    {% endif %}
+    <title>
+    {% block title %}
+        Exchange
+    {% endblock %}
+    </title>
 </head>
 
-<body">
+<body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
         <a class="navbar-brand" href="{% url 'blog-home' %}">
             <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="ˇ" class="d-inline-block align-center"
@@ -239,13 +159,14 @@ button:hover {
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="{% url 'post-create' %}">New Post<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
                     </li>
-                    
                     <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="#" onclick="openNav()" >Profile<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="{% url 'profile' %}">Profile<span class="sr-only">(current)</span></a>
                     </li>
-                    
+                    <li class="nav-item active">
+                        <a class="nav-link  text-white" href="{% url 'logout' %}">Log out<span class="sr-only">(current)</span></a>
+                    </li>
                 {% else %}
                     <li class="nav-item active">
                         <a class="nav-link  text-white" href="{% url 'login' %}">Log in<span class="sr-only">(current)</span></a>
@@ -258,62 +179,9 @@ button:hover {
                     <a class="nav-link  text-white" href="#" >中/EN<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            
-        
-            
-            
         </div>
-        
-        <!--會員資料展開頁-->
-            
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="container">
-                            <div class="media">
-                                <p class='lay1'>
-                                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="100" >
-                                    <div class="media-body">
-                                        <h2 class="account-heading text-black">{{ user.username }}</h2>
-                                        
-                                    </div>
-                                </p>
-                            </div>
-                                <p class="lay2">
-                                    <h5 class="text-black">
-                                            {{ user.email }}
-                                    </h5>
-                                
-                                </p>
-                            
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <hr>
-                <button class="button button1">
-                    <div class="nav-item active">
-                        <a class="nav-link  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
-                        
-                    </div>
-                </button>
-                
-                <footer class="footer">
-                    <div class="nav-item active" >
-                        <a class="nav-link  text-dark" href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
-                    </div>
-                </footer>
-                
-            
-                
-            
-        </div>
-        
     </nav>
-    <div class="container "> 
+    <div class="container"> 
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -323,7 +191,6 @@ button:hover {
         {% endif %}
         {% block content %}{% endblock %}
     </div>
-    
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
