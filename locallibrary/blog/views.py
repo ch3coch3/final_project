@@ -7,7 +7,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from .models import Post,Comment
+from .models import Post,Comment,Category
 from .forms import PostForm,CommentForm
 from django.db.models.query_utils import Q
 
@@ -26,7 +26,7 @@ class PostListView(ListView):
     template_name = 'blog/mainpage_new.html' # <app>/<model>_<viewtype>.html 尋找樣板顯示(顯示主頁)
     context_object_name = 'posts'
     ordering = ['-date_posted']          # 讓貼文以時間排序
-    paginate_by = 4                    # 每頁只顯示四個貼文
+    #spaginate_by = 4                    # 每頁只顯示四個貼文
 
 
 # 管理點入貼文後的詳細資訊
@@ -72,12 +72,21 @@ def about(request):
 
 class AddPostView(LoginRequiredMixin,CreateView):
     model = Post
-    # form_class = PostForm
+    form_class = PostForm #forms.py裡的PostForm已經有fields了，所以只要留這行
     template_name = 'blog/add_post.html'
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-    fields = ['title','content']
+    #fields = ['title','content']
+
+class AddCategoryView(LoginRequiredMixin,CreateView):
+    model = Category
+    form_class = PostForm 
+    template_name = 'blog/add_post.html'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    #fields = ['title','content']
 
 def articleSearch (request):
     searchTerm=request.GET.get('searchTerm')
@@ -97,3 +106,7 @@ class AddCommentView(LoginRequiredMixin,CreateView):
         form.instance.post_id=self.kwargs['pk']
         form.instance.name = self.request.user
         return super().form_valid(form)
+
+def CategoryView(request,cats):
+    category_posts = Post.objects.filter(category=cats)
+    return render(request,'category.html',{'cats':cats,'category_posts':category_posts})

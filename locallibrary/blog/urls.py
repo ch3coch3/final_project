@@ -6,7 +6,8 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     AddPostView,
-    AddCommentView
+    AddCommentView,
+    CategoryView
 )
 from .import views
 
@@ -20,4 +21,5 @@ urlpatterns = [
     path('about/', views.about, name = 'blog-about'),
     path('articleSearch/', views.articleSearch, name='articleSearch'),
     path('post/<int:pk>/comment', AddCommentView.as_view(), name = 'add_comment'),
+    path('category/<str:cats>/', CategoryView, name = 'category'),
 ]
