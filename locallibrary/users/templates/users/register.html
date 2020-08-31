@@ -3,34 +3,9 @@
 {% block content %}
     <div class="row justify-content-center">
         <div class="content-section">
-            <form method="POST">
+            <form method="POST" action="{% url 'register' %}">
                 {% csrf_token %}
-                <fieldset class = "form-group">
-                    <legend class="border-bottom mb-4">
-                        <h4>註冊資料</h4>
-                    </legend>
-                    <p><label for="id_username">使用者名稱:</label> <input type="text" name="username" required id="id_username"></p>
-                    <p><label for="id_password">密碼:</label> <input type="text" name="password" required id="id_password"></p>
-                    <p><label for="id_password2">確認密碼:</label> <input type="text" name="password2" required id="id_password2"></p>
-                    <p><label for="id_email">電子郵件:</label> <input type="email" name="email" required id="id_email"></p>
-                    <p><label for="id_gender">性別:</label> <select name="gender" id="id_gender">
-                    <option value="1">男</option>
-
-                    <option value="2">女</option>
-
-                    <option value="3">第三性</option>
-
-                    </select></p>
-                    <p><label for="id_identication">身分別:</label> <select name="identication" required id="id_identication" multiple>
-                    <option value="1">交換生</option>
-
-                    <option value="2">學伴</option>
-
-                    <option value="3">外籍生</option>
-
-                    <option value="4">過去有超過兩個月的出國經驗，非學校活動</option>
-                    </select></p>
-                </fieldset>
+                {{ UserRegisterForm.as_p }}
                 <div class="form-group">
                     <button class="btn btn-outline-info" type="submit">
                         Sign up

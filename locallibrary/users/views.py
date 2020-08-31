@@ -4,17 +4,26 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('login')
-    else:
-        form = UserRegisterForm()
-    return render(request, 'users/register.html',{'form':form})
-    # return render(request, 'users/register.html')
+    template = 'users/register.html'
+    if request.method == 'GET':
+        return render(request, template, {'UserRegisterForm':UserRegisterForm()})
+    userRegisterForm = UserRegisterForm(request.POST)
+    if not userRegisterForm.is_valid():
+        return render(request, template, {'UserRegisterForm':userRegisterForm})
+    userRegisterForm.save()
+    messages.success(request, '歡迎註冊')
+    return redirect('blog-home')
+    # if request.method == 'POST':
+    #     form = UserRegisterForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         username = form.cleaned_data.get('username')
+    #         messages.success(request, f'Account created for {username}!')
+    #         return redirect('login')
+    # else:
+    #     form = UserRegisterForm()
+    # return render(request, 'users/register.html',{'form':form})
+    # # return render(request, 'users/register.html')
 @login_required
 def profile(request):
     if request.method == 'POST':

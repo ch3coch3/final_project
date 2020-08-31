@@ -19,13 +19,15 @@ class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(label='密碼')
     password2 = forms.CharField(label='確認密碼')
     email = forms.EmailField(label='電子郵件')
-    # ID = forms.ImageField(label='上傳學生證或入學證明',default='default.jpg',upload_to='profile_pics')
-    # picture = forms.ImageField(label='上傳大頭貼照',default='default.jpg',upload_to='profile_pics')
+    # ID = forms.ImageField()
+    # picture = forms.ImageField()
+    image = forms.ImageField()
     gender = forms.ChoiceField(label='性別',choices=gender_choice)
     identication = forms.MultipleChoiceField(label='身分別',choices=id_choice)
     class Meta:
         model = Profile
-        fields = ['username','password','password2','email','gender','identication']
+        # fields = ['username','password','password2','email','gender','identication']
+        fields = ['username','password','password2','email','image','gender','identication']
     
     def clean_password2(self):
         password = self.cleaned_data.get('password')
@@ -33,7 +35,7 @@ class UserRegisterForm(forms.ModelForm):
         if password and password2 and password != password2:
             raise forms.ValidationError('密碼不相符')
         return password2
-    def save(self):
+    def save(self,commit=True):
         user = super().save(commit=False)
         user.set_password(user.password)
         user.save()
