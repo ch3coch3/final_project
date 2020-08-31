@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'crispy_forms',
     'ckeditor',
+    'taggit',
     'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',

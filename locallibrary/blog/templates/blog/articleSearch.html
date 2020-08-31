@@ -26,25 +26,6 @@
     }
 </style>
 <body>
-        <!--發問跳出視窗-->
-        <div class="ask">
-            <button class="ask1" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><img src="plus.png" width="80" height="80" data-toggle="tooltip" data-placement="top" title="發問"></button>
-        </div>
-        <div id="id01" class="modal">
-            <form class="modal-content1 animate" action="/action_page.php" method="post">
-                <div class = "top">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;
-                    </span>
-                </div>
-                <div class = "container">
-                        <label for = "title1">標題</label>
-                        <input type="text" class = "form-control" id="title1" placeholder value required>
-                        <label for = "article">內文</label><br>
-                        <textarea cols="79" rows="5">
-                        </textarea>
-                </div>
-        </div>
-    </div>   
     {% if not articles %}
     <p>查無資料</p>
     {% else %}

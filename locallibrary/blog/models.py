@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.postgres.fields import ArrayField
+from taggit.managers import TaggableManager
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -34,7 +37,8 @@ class Post(models.Model):
     content = RichTextUploadingField(blank=True,null=True)
     category = models.CharField(max_length=100,default='Food')
     area = models.CharField(max_length=100,default='Taiwan')
-    #content = models.TextField()
+    tags = TaggableManager()
+  
 
     def __str__(self):
         return self.title
@@ -54,5 +58,13 @@ class Comment(models.Model):
         return '%s-%s' % (self.post.title,self.name)
 
     def get_absolute_url(self):
-        #return reverse('post-detail', kwargs={'pk':self.pk})
-        return reverse( 'blog-home' )
+        return reverse('post-detail', kwargs={'pk':self.post.pk})
+        # return reverse( 'blog-home' )
+
+class AskArticle(models.Model):
+    title = models.CharField(max_length=100)
+    content = RichTextUploadingField(blank=True,null=True)
+    date_posted  = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title

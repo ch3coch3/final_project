@@ -7,18 +7,23 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from .models import Post,Comment,Category
+from .models import Post,Comment,Category,AskArticle
 from .forms import PostForm,CommentForm
 from django.db.models.query_utils import Q
 
+class ArticleView(ListView):
+    model = AskArticle
+    context_object_name = 'articles'
+    template_name = 'blog/article.html'
+    ordering = ['-date_posted'] 
 
-def home(request):
-    context = {
-        'posts':Post.objects.all()
-    }
+# def home(request):
+    # context = {
+        # 'posts':Post.objects.all()
+    # }
     # return render(request, 'blog/home.html',context)
-    image = models.ImageField(default = 'default.jpg', upload_to='page_pics')
-    return render(request, 'blog/mainpage_new.html',context)
+    # image = models.ImageField(default = 'default.jpg', upload_to='page_pics')
+    # return render(request, 'blog/mainpage_new.html',context)
 
 # 管理貼文呈現的狀態
 class PostListView(ListView):
@@ -77,16 +82,8 @@ class AddPostView(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-    #fields = ['title','content']
+    # fields = ['title','content']
 
-class AddCategoryView(LoginRequiredMixin,CreateView):
-    model = Category
-    form_class = PostForm 
-    template_name = 'blog/add_post.html'
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
-    #fields = ['title','content']
 
 def articleSearch (request):
     searchTerm=request.GET.get('searchTerm')
@@ -107,6 +104,23 @@ class AddCommentView(LoginRequiredMixin,CreateView):
         form.instance.name = self.request.user
         return super().form_valid(form)
 
-def CategoryView(request,cats):
-    category_posts = Post.objects.filter(category=cats)
-    return render(request,'category.html',{'cats':cats,'category_posts':category_posts})
+# def CategoryView(request,cats):
+#     category_posts = Post.objects.filter(category=cats)
+#     return render(request,'blog/category.html',{'cats':cats,'category_posts':category_posts})
+
+
+def AreaView(request,areas):
+    area_posts = Post.objects.filter(area=areas)
+    return render(request,'blog/area.html',{'areas':areas,'area_posts':area_posts})
+
+
+def AreaCategoryView(request,areas,cats):
+    area_posts = Post.objects.filter(area=areas,tags__name__in=[cats.replace('-',' ')])
+    return render(request,'blog/area_category.html',{'areas':areas,'cats':cats,'area_posts':area_posts})
+
+def areaArticleSearch (request):
+    searchTerm=request.GET.get('searchTerm')
+    articles=Post.objects.filter(Q(category__icontains=searchTerm))
+    context={'articles':articles, 'searchTerm': searchTerm}
+    return render(request, 'blog/areaArticleSearch.html', context)
+    

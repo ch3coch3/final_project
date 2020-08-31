@@ -7,16 +7,19 @@ choices_area = Area.objects.all().values_list('where','where')
 
 
 class PostForm(forms.ModelForm):
+    # category = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=choices)
+    tags = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=choices)
     class Meta:
         model = Post
-        fields = ('title','area','category','content')
+        fields = ('title','area','tags','content')
 
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control'}),
             'author':forms.Select(attrs={'class':'form-control'}),
             'other':forms.TextInput(attrs={'class':'form-control','placeholder':'America'}),
             'content':forms.Textarea(attrs={'class':'form-control'}),
-            'category':forms.Select(choices=choices,attrs={'class':'form-control'}),
+            # 'category':forms.Select(choices=choices,attrs={'class':'form-control'}),
+            # 'category':forms.CheckboxSelectMultiple(choices=choices,attrs={'class':'form-control'}),
             'area':forms.Select(choices=choices_area,attrs={'class':'form-control'}),
         }
 

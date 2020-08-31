@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from users.models import Profile
 
 gender_choice = [
     ('1','男'),
@@ -24,7 +24,7 @@ class UserRegisterForm(forms.ModelForm):
     gender = forms.ChoiceField(label='性別',choices=gender_choice)
     identication = forms.MultipleChoiceField(label='身分別',choices=id_choice)
     class Meta:
-        model = User
+        model = Profile
         fields = ['username','password','password2','email','gender','identication']
     
     def clean_password2(self):

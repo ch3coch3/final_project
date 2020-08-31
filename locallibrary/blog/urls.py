@@ -7,7 +7,9 @@ from .views import (
     PostDeleteView,
     AddPostView,
     AddCommentView,
-    CategoryView
+    AreaView,
+    AreaCategoryView,
+    ArticleView,
 )
 from .import views
 
@@ -21,5 +23,7 @@ urlpatterns = [
     path('about/', views.about, name = 'blog-about'),
     path('articleSearch/', views.articleSearch, name='articleSearch'),
     path('post/<int:pk>/comment', AddCommentView.as_view(), name = 'add_comment'),
-    path('category/<str:cats>/', CategoryView, name = 'category'),
+    path('area/<str:areas>/', AreaView, name = 'area'),
+    path('area/<str:areas>/<str:cats>/', AreaCategoryView, name = 'area_category'),
+    path('askarticle/',ArticleView.as_view(),name="askarticle")
 ]
