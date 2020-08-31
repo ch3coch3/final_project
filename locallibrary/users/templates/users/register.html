@@ -3,9 +3,9 @@
 {% block content %}
     <div class="row justify-content-center">
         <div class="content-section">
-            <form method="POST" action="{% url 'register' %}">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ UserRegisterForm.as_p }}
+                {{ form.as_p }}
                 <div class="form-group">
                     <button class="btn btn-outline-info" type="submit">
                         Sign up

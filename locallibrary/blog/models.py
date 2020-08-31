@@ -34,7 +34,7 @@ class Area(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     date_posted  = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # 刪除使用者時也刪除其貼文，但刪除貼文不會刪除使用者
+    author = models.ForeignKey(User, on_delete=models.CASCADE)  # 刪除使用者時也刪除其貼文，但刪除貼文不會刪除使用者
     other = models.CharField(max_length=200)
     content = RichTextUploadingField(blank=True,null=True)
     category = models.CharField(max_length=100,default='Food')
@@ -52,7 +52,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post=models.ForeignKey(Post,related_name='comments',on_delete=models.CASCADE)
-    name = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='names',on_delete=models.CASCADE)
+    name = models.ForeignKey(User, related_name='names',on_delete=models.CASCADE)
     body=models.TextField()
     date_added=models.DateTimeField(default=timezone.now)
     
