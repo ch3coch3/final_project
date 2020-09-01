@@ -120,60 +120,7 @@
           border-radius: 50%;
       }
     </style>
-<!--發問框設計-->
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
-    
-    button:hover {
-      opacity: 0.8;
-    }
-    
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-      padding-top: 60px;
-    }
-    
-    /* Modal Content/Box */
-    .modal-content1 {
-      background-color: #fefefe;
-      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-      border: 1px solid #888;
-      width: 50%; /* Could be more or less, depending on screen size */
-    }
-    
-    /* Add Zoom Animation */
-    .animate {
-      -webkit-animation: animatezoom 0.6s;
-      animation: animatezoom 0.6s
-    }
-    
-    @-webkit-keyframes animatezoom {
-      from {-webkit-transform: scale(0)} 
-      to {-webkit-transform: scale(1)}
-    }
-      
-    @keyframes animatezoom {
-      from {transform: scale(0)} 
-      to {transform: scale(1)}
-    }
-    
-    /* Change styles for span and cancel button on extra small screens */
-    @media screen and (max-width: 300px) {
-      span.psw {
-         display: block;
-         float: none;
-      }
-    }
-
+    <style>
     /*聊天室設計*/
         .chat {
         float: left;
@@ -288,7 +235,7 @@
         color: #adadad;
         cursor: pointer;
         }
-</style>
+    </style>
 
 <head>
     <!-- Required meta tags -->
@@ -333,10 +280,20 @@
         </div>
         <div>
             <ul class="nav justify-content-end">
-                <li class="nav-item active">
-                    <a class="nav-link  text-white" href="#" >聊天室<span class="sr-only">(current)</span></a>
-                </li>
                 {% if user.is_authenticated %}
+                        <div class="chat">
+                            <button class="chatbtn">Chat Room
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                                <div class="chat-content1">
+                                    <button class="friend" type="button" onclick="openForm()"><width="20" height="20">William
+                                    </button><br><br>
+                                    <button class="friend" type="button" onclick="openForm()"><width="20" height="20">Cindy
+                                    </button><br><br>
+                                    <button class="friend" type="button" onclick="openForm()"><width="20" height="20">Jessica
+                                    </button>
+                                </div>
+                        </div>
                     <li class="nav-item active"></li>
                         <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
                     </li>
@@ -352,9 +309,6 @@
                         <a class="nav-link  text-white" href="{% url 'register' %}">Sign up<span class="sr-only">(current)</span></a>
                     </li>
                 {% endif %}
-                <li class="nav-item active">
-                    <a class="nav-link  text-white" href="#" >中/EN<span class="sr-only">(current)</span></a>
-                </li>
             </ul>
         </div>
  <!--會員資料展開頁-->
@@ -470,6 +424,7 @@
             }
         }
     </script>
+    <!--聊天室-->
     <script>
         function openForm() {
             document.getElementById("myForm").style.display = "block";

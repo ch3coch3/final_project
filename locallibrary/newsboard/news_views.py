@@ -22,7 +22,7 @@ class Newshome(ListView):
     context_object_name = 'newsarticles'
     template_name = 'newsboard/news.html'
     ordering = ['-pubDateTime']
-    paginate_by = 4 
+    paginate_by = 2 
 
 class ArticleDetailView(DetailView):
     model = Newsarticle

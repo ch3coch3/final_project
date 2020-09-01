@@ -8,7 +8,8 @@ class AskView(ListView):
     model = Askpost
     context_object_name = 'askposts'
     template_name = 'ask/ask.html'
-    ordering = ['-date_posted'] 
+    ordering = ['-date_posted']
+    paginate_by = 2                    # 每頁只顯示四個貼文
 
 class AskDetailView(DetailView):
     model = Askpost

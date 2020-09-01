@@ -27,7 +27,7 @@ class PostListView(ListView):
     template_name = 'blog/mainpage_new.html' # <app>/<model>_<viewtype>.html 尋找樣板顯示(顯示主頁)
     context_object_name = 'posts'
     ordering = ['-date_posted']          # 讓貼文以時間排序
-    #spaginate_by = 4                    # 每頁只顯示四個貼文
+    paginate_by = 4                    # 每頁只顯示四個貼文
 
 
 # 管理點入貼文後的詳細資訊
