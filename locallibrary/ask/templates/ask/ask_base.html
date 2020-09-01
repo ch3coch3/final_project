@@ -309,7 +309,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">News <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'newshome' %}">News <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'ask' %}">Ask <span class="sr-only">(current)</span></a>
@@ -331,7 +331,7 @@
                     
                 {% else %}
                     <li class="nav-item active">
-                        <a class="nav-link  text-white" href="{% url 'login' %}">Log in<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="{% url 'users:login' %}">Log in<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link  text-white" href="{% url 'register' %}">Sign up<span class="sr-only">(current)</span></a>

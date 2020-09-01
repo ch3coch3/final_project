@@ -15,18 +15,19 @@ id_choice = [
     ('4','過去有超過兩個月的出國經驗，非學校活動'),
 ]
 class UserRegisterForm(forms.ModelForm):
-    username = forms.CharField(label='帳號')
-    password = forms.CharField(label='密碼',widget=forms.PasswordInput)
-    password2 = forms.CharField(label='確認密碼',widget=forms.PasswordInput)
-    email = forms.EmailField(label='電子郵件')
-    identicate = forms.ImageField(label='學生證')
-    image = forms.ImageField(label='大頭貼',required=False)
-    gender = forms.ChoiceField(label='性別',choices=gender_choice)
-    identication = forms.MultipleChoiceField(label='身分別',choices=id_choice)
+    username = forms.CharField(label='帳號',widget=forms.TextInput(attrs={'class':'form-control'}))
+    password = forms.CharField(label='密碼',widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(label='確認密碼',widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(label='電子郵件',widget=forms.EmailInput(attrs={'class':'form-control'}))
+    identicate = forms.ImageField(label='學生證',widget=forms.FileInput)
+    image = forms.ImageField(label='大頭貼',widget=forms.FileInput,required=False)
+    gender = forms.ChoiceField(label='性別',widget=forms.Select(attrs={'class':'form-control'}),choices=gender_choice)
+    identication = forms.MultipleChoiceField(label='身分別',widget=forms.CheckboxSelectMultiple,choices=id_choice)
     class Meta:
         model = User
         fields = ['username','password','password2','email','identicate','image','gender','identication']
-    
+
+
     def clean_password2(self):
         password = self.cleaned_data.get('password')
         password2 = self.cleaned_data.get('password2')
