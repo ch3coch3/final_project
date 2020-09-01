@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
     ListView, 
@@ -7,8 +7,8 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from .models import Post
-from .forms import PostForm
+from .models import Post,Comment
+from .forms import PostForm,CommentForm
 from django.db.models.query_utils import Q
 
 
@@ -85,3 +85,15 @@ def articleSearch (request):
     context={'articles':articles, 'searchTerm': searchTerm}
     return render(request, 'blog/articleSearch.html', context)
     
+
+
+class AddCommentView(LoginRequiredMixin,CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'blog/add_comment.html'
+    #fields = '__all__'
+    
+    def form_valid(self, form):
+        form.instance.post_id=self.kwargs['pk']
+        form.instance.name = self.request.user
+        return super().form_valid(form)

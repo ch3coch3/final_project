@@ -1,0 +1,14 @@
+<!--新的發文頁面-->
+{% extends "blog/base.html" %}
+{% block title %}comment on the Post{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+           <h1>Add Comment</h1>
+           <br/><br/>
+           <div class="form-group">
+               <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class='btn btn-secondary'>Add comment</button>
+                </div>
+{% endblock content %}
