@@ -19,7 +19,7 @@ from django.urls import path, include
 from users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from newsboard import news_views
 
 
 urlpatterns = [
@@ -54,6 +54,7 @@ urlpatterns = [
          template_name='users/password_reset_complete.html'
          ),
       name='password_reset_complete'),
+    path('', include('newsboard.urls', namespace='newsboard')),
 ]
 
 if settings.DEBUG:

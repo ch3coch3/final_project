@@ -1,0 +1,31 @@
+{% extends "newsboard/baseNews.html" %}
+{% block content %}
+<style>
+    .media{
+        padding-left: 20px;
+        margin-left: 180px;
+}
+</style>
+<div class='container'>
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <br><br><br> 
+            {% for newsarticle in newsarticles %}
+            <article class="media content-section bg-light">
+                <!--<img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="25" height = "25">-->
+                <div class="media-body">
+                  <div class="article-metadata">
+                    <h5><br><small><small class="text-muted float-right">{{ newsarticle.pubDateTime|date:"F d, Y"}}</small></small><hr>
+                  </div></h5>
+                  <h2 class="article-title text-secondary">{{ newsarticle.title }}</h2>
+                  <p class="article-content">{{ newsarticle.body|safe|truncatechars_html:100 }}</p>
+                  <a href="{% url 'article-detail' newsarticle.pk %}" class="text-secondary float-right">(see more...)</a>
+                </div>
+            </article>
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %} 

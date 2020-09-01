@@ -117,4 +117,6 @@ def areaArticleSearch (request):
     articles=Post.objects.filter(Q(category__icontains=searchTerm))
     context={'articles':articles, 'searchTerm': searchTerm}
     return render(request, 'blog/areaArticleSearch.html', context)
-    
+
+def news(request):
+    return render(request, 'newsboard/news.html')
