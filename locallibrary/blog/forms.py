@@ -1,7 +1,10 @@
 from django import forms
 from .models import Post,Comment,Category,Area
 
-choices = [('Course reviews', 'Course reviews'), ('Daily life', 'Daily life'), ('Foods', 'Foods'), ('Entertainment', 'Entertainment'), ('Laws', 'Laws'), ('Transportation', 'Transportation'), ('Customs,traditions', 'Customs,traditions'), ('Expenses', 'Expenses'), ('Accommodation', 'Accommodation'), ('Travel', 'Travel'), ('School reviews', 'School reviews'), ('Climate', 'Climate')]
+choices = [('Course reviews', 'Course reviews'), ('Daily life', 'Daily life'), ('Foods', 'Foods'), ('Entertainment', 'Entertainment'), 
+            ('Laws', 'Laws'), ('Transportation', 'Transportation'), ('Customs,traditions', 'Customs,traditions'), ('Expenses', 'Expenses'), 
+            ('Accommodation', 'Accommodation'), ('Travel', 'Travel'), ('School reviews', 'School reviews'), ('Climate', 'Climate'),
+            ('other', 'other')]
 choices_area = [('Americas', 'Americas'), ('Asia', 'Asia'), ('Europe', 'Europe'), ('Australia', 'Australia'), ('Africa', 'Africa'), ('Oceania', 'Oceania')]
 
 class PostForm(forms.ModelForm):

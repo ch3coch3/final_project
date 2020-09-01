@@ -1,0 +1,456 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <style>
+        /*會員資料展開頁面設計*/
+        .button {
+        background-color: rgb(219, 209, 209);
+        border: none;
+        /* color: black; */
+        padding: 5px 70px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 35px;
+        cursor: pointer;
+        border-radius: 20px;
+        font-family: normal;
+        font-size: semi-expanded;
+        font-size: 25px;
+        
+}
+    .button:hover {
+    background-color: #f1f1f1;
+    }
+     .footer{
+        position: absolute;
+        bottom: 0;
+        right:0;
+        font-size: 30px;
+     }
+     
+    
+     .sidenav {
+        /* border-width: 3px;
+        border-style:solid;
+        border-color: #09a7a7;  */
+        margin-top:55px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        height: 95%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        background-color:rgb(230, 223, 223);
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 30px;
+        
+        }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+        color: #fff;
+        }
+     
+        @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+      /*會員資料展開頁面設計---end*/
+
+
+        .col-12 {
+        z-index: 99;
+        }
+
+      div.absolute {
+        position: absolute;
+        position: fixed;
+        overflow: auto;
+      }
+      div.bar {
+        list-style-type: none;
+        overflow: auto;
+        position: fixed;
+        top:42pt;
+        width: 80%;
+        background-color: white;
+      }
+      li.threeblock{
+        background-color: white;
+        font-size: 16px;
+      }
+      div.name{
+          font-size:30px;
+          font-weight: bold;
+      }
+      .nav link{
+          color:white;
+      }
+      .ask1{
+          background-color: white;
+          border: none;
+          position: fixed;
+          bottom: 0;
+          right: 0;
+          border-radius: 50%;
+      }
+    </style>
+<!--發問框設計-->
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    button:hover {
+      opacity: 0.8;
+    }
+    
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      padding-top: 60px;
+    }
+    
+    /* Modal Content/Box */
+    .modal-content1 {
+      background-color: #fefefe;
+      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+      border: 1px solid #888;
+      width: 50%; /* Could be more or less, depending on screen size */
+    }
+    
+    /* Add Zoom Animation */
+    .animate {
+      -webkit-animation: animatezoom 0.6s;
+      animation: animatezoom 0.6s
+    }
+    
+    @-webkit-keyframes animatezoom {
+      from {-webkit-transform: scale(0)} 
+      to {-webkit-transform: scale(1)}
+    }
+      
+    @keyframes animatezoom {
+      from {transform: scale(0)} 
+      to {transform: scale(1)}
+    }
+    
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+         display: block;
+         float: none;
+      }
+    }
+
+    /*聊天室設計*/
+        .chat {
+        float: left;
+        overflow: hidden;
+        }
+
+        .chat-content1 {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 999;
+        position: fixed;
+        }
+
+        .chat-content1 a {
+        float: none;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        }
+
+        .chat:hover .chat-content1 {
+        display: block;
+        }
+
+        /* chat button */
+        .chat .chatbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 7px 14px;
+        background-color: transparent;
+        font-family: inherit; /* Important for vertical align on mobile phones */
+        margin: 0; /* Important for vertical align on mobile phones */
+        }
+
+        /* Add a background color to navbar links on hover */
+        .chat:hover .chatbtn {
+        background-color: transparent;
+        }
+
+    /* 聊天室朋友圖像設計*/
+        .friend{
+            background-color: transparent;
+            border: none;
+            color: black;
+            padding: 12px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 160px;
+            text-align: left;
+        }
+
+        .friend:hover{
+            background-color: #d0d0d0;
+        }
+
+    /* 聊天室跳出設計*/
+        .chat-popup1 {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 200px;
+        border: 3px solid #09a7a7;
+        z-index: 99999;
+        background-color: #09a7a7;
+        color: white;
+        }
+
+        .talk_show{
+            width:300px;
+            height:300px;
+            border:1px solid #666;
+            background:#fff;
+            margin:10px auto 0;
+            overflow:auto;
+        }
+        .talk_input{
+            width:300px;
+            margin:10px auto 0;
+        }
+
+        .talk_sub{
+            width:56px;
+            height:30px;
+            float:right;
+            margin-left:10px;
+            border:none;
+            background-color: white;
+        }
+
+        .talk_word{
+            width:230px;
+        }   
+
+        .close1 {
+        position: absolute;
+        right: 25px;
+        top: 0;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        }
+
+        .close1:hover,
+        .close1:focus {
+        color: #adadad;
+        cursor: pointer;
+        }
+
+
+</style>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>
+    {% block title %}
+        Exchange-News
+    {% endblock %}
+    </title>
+</head>
+
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
+        <a class="navbar-brand" href="{% url 'blog-home' %}">
+            <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="ˇ" class="d-inline-block align-center"
+                alt="" loading="lazy">
+            Exchange
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'newshome' %}">News <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Ask <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse">
+                {% include 'newsboard/article_search_form.html' %}
+                <p class='inlineBlock'></p></li>
+            </div>
+        </div>
+        <div>
+            <ul class="nav justify-content-end">
+                {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link  text-white" href="#" >聊天室<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active"></li>
+                        <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link  text-white" href="{% url 'users:login' %}">Log in<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link  text-white" href="{% url 'register' %}">Sign up<span class="sr-only">(current)</span></a>
+                    </li>
+                {% endif %}
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#" >中/EN<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+        <!--會員資料展開頁-->
+
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="container">
+                            <div class="media">
+                                <p class='lay1'>
+                                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="100" >
+                                    <div class="media-body">
+                                        <h2 class="account-heading text-black">{{ user.username }}</h2>
+                                        
+                                    </div>
+                                </p>
+                            </div>
+                                <p class="lay2">
+                                    <h5 class="text-black">
+                                            {{ user.email }}
+                                    </h5>
+                                
+                                </p>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <hr>
+                
+                <div class="nav-item active">
+                    <a class="button  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
+                    
+                </div>
+                
+                
+                <footer class="footer">
+                    <div class="nav-item active" >
+                        <a class="nav-link  text-dark" href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
+                    </div>
+                </footer>
+                
+            
+                
+            
+        </div>
+
+<!--會員資料展開頁---end-->
+    </nav>
+    <!--會員資料展開頁-->
+    <script>
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "280px";
+        }
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+    <!--會員資料展開頁---end-->
+    <!--聊天室彈出-->
+    <div class="chat-popup1" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Chat</h1>
+            <span onclick="closeForm()" class="close1" title="Close Modal">&times;</span>
+            <div class="talk_con">
+                <div class="talk_show" id="words">
+                </div>
+                <div class="talk_input">
+                    <input type="text" class="talk_word" id="talkwords">
+                    <input type="button" value="傳送" class="talk_sub" id="talksub">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="container"> 
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');   
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+            
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

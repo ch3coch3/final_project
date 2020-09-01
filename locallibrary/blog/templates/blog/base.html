@@ -3,8 +3,11 @@
 <html lang="en">
     <style>
         
-        /*會員資料展開頁面設計*/
-        .button {
+         /*會員資料展開頁面設計*/
+         .media{
+            padding-left: 74px;
+        }
+         .button1 {
         background-color: rgb(219, 209, 209);
         border: none;
         /* color: black; */
@@ -18,6 +21,24 @@
         font-family: normal;
         font-size: semi-expanded;
         font-size: 25px;
+        white-space:nowrap;
+        
+}
+        .button2 {
+        background-color: rgb(219, 209, 209);
+        border: none;
+        /* color: black; */
+        padding: 5px 68px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 35px;
+        cursor: pointer;
+        border-radius: 20px;
+        font-family: normal;
+        font-size: semi-expanded;
+        font-size: 25px;
+        white-space:nowrap;
         
 }
     .button:hover {
@@ -53,14 +74,7 @@
         
         }
 
-      .sidenav .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-        color: #fff;
-        }
+      
      
         @media screen and (max-height: 450px) {
         .sidenav {padding-top: 15px;}
@@ -306,7 +320,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">News <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'newshome' %}">News <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'ask' %}">Ask <span class="sr-only">(current)</span></a>
@@ -343,65 +357,74 @@
                 </li>
             </ul>
         </div>
-        <!--會員資料展開頁-->
+ <!--會員資料展開頁-->
 
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="container">
-                            <div class="media">
-                                <p class='lay1'>
-                                    <img class="rounded-circle account-img" src="{{ user.image.url }}" width="100" height="100" >
-                                    <div class="media-body">
-                                        <h2 class="account-heading text-black">{{ user.username }}</h2>
-                                        
-                                    </div>
-                                </p>
-                            </div>
-                                <p class="lay2">
-                                    <h5 class="text-black">
-                                            {{ user.email }}
-                                    </h5>
-                                
-                                </p>
-                            
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <hr>
-                
-                <div class="nav-item active">
-                    <a class="button  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
-                    
-                </div>
-                
-                
-                <footer class="footer">
-                    <div class="nav-item active" >
-                        <a class="nav-link  text-dark" href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
-                    </div>
-                </footer>
-                
+ <div id="mySidenav" class="sidenav">
             
-                
+        
+    <div class="row">
+        <div class="col-md-8">
+            <div class="container">
+                <div class="media">
+                    <p class='lay1'>
+                        <img class="rounded-circle  account-img "  src="{{ user.image.url }}" width="100" height="100" >
+                    </p>
+                </div>        
+            </div>
+            <div class="col" >
+                <p class="lay2">
+                    <h2 class="text-black" style="text-align:left;">
+                        {{ user.username }}
+                    </h2>
+                </p>
+                <p class="lay3">
+                    <h5 class="text-black "style="text-align:left;">
+                            {{ user.email }}
+                    </h5>
+                </p>
+
+            </div>
+            
             
         </div>
+    </div>
+    <hr>
+    
+    <div class="nav-item active">
+        <a class="button1  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
+        <a class="button2  text-dark " href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
+    </div>
+    
+    
+    
+    
+
+    
+
+</div>
 
 <!--會員資料展開頁---end-->
     </nav>
-    <!--會員資料展開頁-->
-    <script>
-        function openNav() {
-          document.getElementById("mySidenav").style.width = "280px";
-        }
-        function closeNav() {
-          document.getElementById("mySidenav").style.width = "0";
-        }
-    </script>
+     <!--會員資料展開頁-->
+    
+
+<script>
+	function openNav() {
+	    var e = document.getElementById("mySidenav");
+	    if (e.style.width == '280px')
+	    {
+	        e.style.width = '0px';
+	    }
+	    else 
+	    {
+	        e.style.width = '280px';
+	    }
+	}
+
+	function closeNav() {
+	    document.getElementById("mySidenav").style.width = "0";
+	}
+	</script>
     <!--會員資料展開頁---end-->
     <!--聊天室彈出-->
     <div class="chat-popup1" id="myForm">
