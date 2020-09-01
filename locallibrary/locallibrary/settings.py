@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'newsboard',
 ]
 TIME_ZONE = 'Asia/Taipei'
 
@@ -150,3 +151,5 @@ EMAIL_HOST_USER = 'bob80560917@gmail.com'
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_HOST_PASSWORD = 'bobloveu360250'
 # EMAIL_HOST_PASSWORD = ''
+
+NEWS_URL='newshome'

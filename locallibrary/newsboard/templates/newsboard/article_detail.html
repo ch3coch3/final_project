@@ -1,0 +1,24 @@
+{% extends "newsboard/baseNews.html" %}
+{% block title %}{{ newsarticle.title }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col col-8">
+            <article class="media content-section">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <small class="text-muted">
+                            {{ newsarticle.pubDateTime|date:"F d, Y" }}
+                        </small>
+                    <h2 class="article-title">{{ newsarticle.title }}</h2>
+                    <br>
+                    <br>
+                    <p>
+                        {{ newsarticle.body|safe }}
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+
+{% endblock %}
