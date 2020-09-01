@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newsboard',
 ]
-TIME_ZONE = 'Asia/Taipei'
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 
@@ -116,6 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 

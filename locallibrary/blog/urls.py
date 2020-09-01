@@ -9,11 +9,13 @@ from .views import (
     AddCommentView,
     AreaView,
     AreaCategoryView,
-    
 )
+<<<<<<< HEAD
 from ask.views import AskView,AskPostView,AskDetailView,AskCommentView
 from newsboard import news_views
 from newsboard.news_views import Newshome, ArticleDetailView, ArticleCreateView, ArticleUpdateView, ArticleDeleteView, AddArticleView
+=======
+>>>>>>> registerform
 from .import views
 
 urlpatterns = [
@@ -28,10 +30,7 @@ urlpatterns = [
     path('post/<int:pk>/comment', AddCommentView.as_view(), name = 'add_comment'),
     path('area/<str:areas>/', AreaView, name = 'area'),
     path('area/<str:areas>/<str:cats>/', AreaCategoryView, name = 'area_category'),
-    path('ask/',AskView.as_view(),name='ask'),
-    path('askpost/',AskPostView.as_view(),name='ask_post'),
-    path('askpost/<int:pk>/', AskDetailView.as_view(), name = 'ask-detail'),
-    path('ask/<int:pk>/comment', AskCommentView.as_view(), name = 'ask-comment'),
+
     path('news/', Newshome.as_view(), name = 'newshome'),
     path('article/<int:pk>/', ArticleDetailView.as_view(), name='article-detail'),
     path('article/new', ArticleCreateView.as_view(), name='article-create'),
@@ -39,4 +38,5 @@ urlpatterns = [
     path('article/<int:pk>/delete/', ArticleDeleteView.as_view(), name='article-delete'),
     path('add_article/', AddArticleView.as_view(), name = 'add_article'),
     path('article_search/', news_views.article_search, name='article_search'),
+
 ]
