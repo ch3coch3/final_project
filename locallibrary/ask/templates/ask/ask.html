@@ -1,0 +1,28 @@
+{% extends "ask/ask_base.html" %}
+{% block content %}
+<style>
+    h3{
+        display: inline;
+    }
+    
+</style>
+<div id="content">
+    <br><br> 
+    {% for post in askposts %}
+    <article class="media content-section bg-light rounded border border-light">
+        <!-- <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="25" height = "25"> -->
+        <div class="media-body">
+          <div class="article-metadata">
+          </div></h5>
+          <h3 class="article-title ">{{ post.title }}</h3>
+          <small class="float-right">,{{ post.date_posted|date:"F d,Y"}}</small>
+          <small><a class="text-secondary float-right">{{ post.user }}</a></small>
+          
+          <p class="article-content border-top">{{ post.content|safe|truncatechars_html:500 }}</p>
+          <a href="{% url 'ask-detail' post.id %}" class="text-secondary float-right">(see more...)</a>
+      
+      </article>
+      <br>
+{% endfor %}
+</div>
+{% endblock %}

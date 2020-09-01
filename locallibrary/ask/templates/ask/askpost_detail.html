@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block content %}
+<p class='inlineBlock'></p>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col col-8">
+            <article class="media content-section">
+                <div class="media-body">
+                    <h2 class="article-title">{{ object.title }}</h2>
+                    {{ object.content|safe }} 
+                    <br><br>
+                        {% for comment in object.comments.all %}
+                        <span class="rounded bg-light border border-light">
+                        {{ comment.body }}---------
+                        <small class="text-secondary">
+                            by <a href='#'>{{ comment.user }}</a>-
+                            {{ comment.date_added }}</span>
+                        </small>
+                        <br>     
+                        {% endfor %}
+                        {% if not object.comments.all %}
+                        No comments yet <a href=" {% url 'ask-comment' object.pk %} ">add one </a>
+                    {% else %}
+                    <small><a href=" {% url 'ask-comment' object.pk %} ">Add comment</a></small>
+                    {%　endif %}
+                </div>
+            </article>
+        </div>
+    </div>
+    
+{% endblock content %}

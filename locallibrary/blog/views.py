@@ -7,15 +7,11 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-from .models import Post,Comment,Category,AskArticle
+from .models import Post,Comment,Category
 from .forms import PostForm,CommentForm
 from django.db.models.query_utils import Q
 
-class ArticleView(ListView):
-    model = AskArticle
-    context_object_name = 'articles'
-    template_name = 'blog/article.html'
-    ordering = ['-date_posted'] 
+
 
 # def home(request):
     # context = {
@@ -104,9 +100,7 @@ class AddCommentView(LoginRequiredMixin,CreateView):
         form.instance.name = self.request.user
         return super().form_valid(form)
 
-# def CategoryView(request,cats):
-#     category_posts = Post.objects.filter(category=cats)
-#     return render(request,'blog/category.html',{'cats':cats,'category_posts':category_posts})
+
 
 
 def AreaView(request,areas):

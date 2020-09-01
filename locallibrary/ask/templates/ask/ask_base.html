@@ -2,7 +2,10 @@
 <!doctype html>
 <html lang="en">
     <style>
-        
+        #content {
+        width: 750px;
+        margin: 0 auto;
+        }
         /*會員資料展開頁面設計*/
         .button {
         background-color: rgb(219, 209, 209);
@@ -312,10 +315,6 @@
                     <a class="nav-link" href="{% url 'ask' %}">Ask <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            <div class = 'collapse navbar-collapse'>
-                {% include 'blog/searchForm.html' %}
-                <p class='inlineBlock'></p>
-            </div>
         </div>
         <div>
             <ul class="nav justify-content-end">
@@ -324,7 +323,7 @@
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="{% url 'ask_post' %}">Ask Question<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active"></li>
                         <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>

@@ -1,9 +1,0 @@
-{% extends "blog/base.html" %}
-{% block content %}
-<br>
-{% for article in articles %}
-    {{ article.title }}
-    {{ article.content|safe }}
-    
-{% endfor %}
-{% endblock %} 

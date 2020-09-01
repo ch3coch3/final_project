@@ -9,8 +9,9 @@ from .views import (
     AddCommentView,
     AreaView,
     AreaCategoryView,
-    ArticleView,
+    
 )
+from ask.views import AskView,AskPostView,AskDetailView,AskCommentView
 from .import views
 
 urlpatterns = [
@@ -25,5 +26,9 @@ urlpatterns = [
     path('post/<int:pk>/comment', AddCommentView.as_view(), name = 'add_comment'),
     path('area/<str:areas>/', AreaView, name = 'area'),
     path('area/<str:areas>/<str:cats>/', AreaCategoryView, name = 'area_category'),
-    path('askarticle/',ArticleView.as_view(),name="askarticle")
+    path('ask/',AskView.as_view(),name='ask'),
+    path('askpost/',AskPostView.as_view(),name='ask_post'),
+    path('askpost/<int:pk>/', AskDetailView.as_view(), name = 'ask-detail'),
+    path('ask/<int:pk>/comment', AskCommentView.as_view(), name = 'ask-comment'),
+    
 ]

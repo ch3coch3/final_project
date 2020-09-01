@@ -1,0 +1,14 @@
+{% extends "ask/ask_base.html" %}
+{% block title %}Ask Question{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <br/>
+           <h1>Ask Question</h1>
+           <div class="form-group">
+               <form method="POST">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button class='btn btn-outline-info float'>Post</button>
+            </div>
+{% endblock content %}

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-from django.contrib.postgres.fields import ArrayField
 from taggit.managers import TaggableManager
 
 
@@ -61,10 +60,3 @@ class Comment(models.Model):
         return reverse('post-detail', kwargs={'pk':self.post.pk})
         # return reverse( 'blog-home' )
 
-class AskArticle(models.Model):
-    title = models.CharField(max_length=100)
-    content = RichTextUploadingField(blank=True,null=True)
-    date_posted  = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return self.title

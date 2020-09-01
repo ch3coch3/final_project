@@ -1,7 +1,12 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-{% include 'blog/searchForm.html' %}
+<style>
+    h2{
+        display: inline;
+    }
+    
+</style>
 <p class='inlineBlock'></p>
     <div class="row">
         <div class="col-2"></div>
@@ -15,35 +20,29 @@
                         <small class="text-muted">
                             {{ object.date_posted|date:"F d, Y" }}
                         </small>
-                        {% if object.author == user %}
-                        <div>
-                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-                            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-                        </div>
-                        <hr>
-                        {% endif %}
                     </div>
                     <h2 class="article-title">{{ object.title }}</h2>
+                    {% if object.author == user %}
+                    <a class="badge badge-pill text-secondary border border-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                    <a class="badge badge-pill text-danger border border-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                    {% endif %}
                     {{ post.content|safe }}
                      <!-- comment -->
-                
-                    <hr>
-                    <h2>Comment</h2>
-
-                    {% if not post.comments.all %}
-                        No comments yet <a href=" {% url 'add_comment' post.pk %} ">add one </a>
-                    {% else %}
-                    <a href=" {% url 'add_comment' post.pk %} ">Add comment</a>
-                    <br>
-                    <br>
+                    <span class="badge badge-pill  text-info border border-info">Comment</span>
+                    <br><br>
                         {% for comment in post.comments.all %}
+                        <span class="rounded bg-light border border-light">
                         {{ comment.body }}---------
-                        <strong>
+                        <small class="text-secondary">
                             by <a href='#'>{{ comment.name }}</a>-
-                            {{ comment.date_added }}
-                        </strong>
+                            {{ comment.date_added }}</span>
+                        </small>
                         <br>     
                         {% endfor %}
+                        {% if not post.comments.all %}
+                        No comments yet <a href=" {% url 'add_comment' post.pk %} ">add one </a>
+                    {% else %}
+                    <small><a href=" {% url 'add_comment' post.pk %} ">Add comment</a></small>
                     {%　endif %}
                 </div>
             </article>
