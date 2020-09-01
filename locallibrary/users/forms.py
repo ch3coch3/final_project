@@ -20,7 +20,7 @@ class UserRegisterForm(forms.ModelForm):
     password2 = forms.CharField(label='確認密碼',widget=forms.PasswordInput)
     email = forms.EmailField(label='電子郵件')
     identicate = forms.ImageField(label='學生證')
-    image = forms.ImageField(label='大頭貼')
+    image = forms.ImageField(label='大頭貼',required=False)
     gender = forms.ChoiceField(label='性別',choices=gender_choice)
     identication = forms.MultipleChoiceField(label='身分別',choices=id_choice)
     class Meta:
