@@ -14,3 +14,8 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'locallibrary.settings')
 
 application = get_wsgi_application()
+
+from blog.settings import DEBUG
+if not DEBUG:
+    from dj_static import Cling
+    application = Cling(get_wsgi_application())

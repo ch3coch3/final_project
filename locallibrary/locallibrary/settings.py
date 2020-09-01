@@ -25,6 +25,8 @@ SECRET_KEY = '57%f!c)$#p8_h#-n@for17jrt-4$8l(9a(8dvtd4p7ut%0=a9j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if 'DYNO' in os.environ:        # 判斷專案是在Heroku上執行或是本機端執行
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -84,13 +86,18 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+if DEBUG:       # 在本機端執行
 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:           # 在Heroku執行
+    import dj_database_url
+    DATABASES = {'default':dj_database_url.config()}
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','https')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -128,8 +135,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+# For heroku deployment
+
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = 'staticfiles'
+# STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
