@@ -4,7 +4,8 @@ from django.utils import timezone
 from django.urls import reverse
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from users.models import User
 
 class Askpost(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,default=True)
