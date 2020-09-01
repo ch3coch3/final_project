@@ -1,7 +1,9 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="row justify-content-center">
+
+
+    <div class="form-group row justify-content-center">
         <div class="content-section">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -10,13 +12,11 @@
                     <button class="btn btn-outline-info" type="submit">
                         Sign up
                     </button>
+                    <small class="text-muted">
+                        Already Have An account? <a class="ml-2"href='#'>Sign In</a>
+                    </small>
                 </div>
             </form>
-            <div class="border-top pt-3">
-                <small class="text-muted">
-                    Already Have An account? <a class="ml-2"href='#'>Sign In</a>
-                </small>
-            </div>
         </div>
     </div>
 {% endblock content %}
