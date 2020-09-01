@@ -24,7 +24,7 @@
         <div class="col-12 col-md-10">         
             {% for post in area_posts %}
             <article class="media content-section bg-light">
-                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="25" height = "25">
+                <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
                 <div class="media-body">
                   <div class="article-metadata">
                     <h5><a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>

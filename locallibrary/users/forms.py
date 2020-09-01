@@ -1,7 +1,7 @@
 from django import forms
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from users.models import Profile
+from users.models import User
 
 gender_choice = [
     ('1','男'),
@@ -15,17 +15,17 @@ id_choice = [
     ('4','過去有超過兩個月的出國經驗，非學校活動'),
 ]
 class UserRegisterForm(forms.ModelForm):
-    username = forms.CharField(label='使用者名稱')
-    password = forms.CharField(label='密碼')
-    password2 = forms.CharField(label='確認密碼')
+    username = forms.CharField(label='帳號')
+    password = forms.CharField(label='密碼',widget=forms.PasswordInput)
+    password2 = forms.CharField(label='確認密碼',widget=forms.PasswordInput)
     email = forms.EmailField(label='電子郵件')
-    # ID = forms.ImageField(label='上傳學生證或入學證明',default='default.jpg',upload_to='profile_pics')
-    # picture = forms.ImageField(label='上傳大頭貼照',default='default.jpg',upload_to='profile_pics')
+    identicate = forms.ImageField(label='學生證')
+    image = forms.ImageField(label='大頭貼')
     gender = forms.ChoiceField(label='性別',choices=gender_choice)
     identication = forms.MultipleChoiceField(label='身分別',choices=id_choice)
     class Meta:
-        model = Profile
-        fields = ['username','password','password2','email','gender','identication']
+        model = User
+        fields = ['username','password','password2','email','identicate','image','gender','identication']
     
     def clean_password2(self):
         password = self.cleaned_data.get('password')
@@ -34,7 +34,7 @@ class UserRegisterForm(forms.ModelForm):
             raise forms.ValidationError('密碼不相符')
         return password2
     def save(self):
-        user = super().save(commit=False)
+        user = super().save(commit=False)   # 暫不儲存
         user.set_password(user.password)
         user.save()
         return user
@@ -44,9 +44,9 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username','email']
+        fields = ['username','email','image']
 
-class ProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['image']
+# class ProfileUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['image']

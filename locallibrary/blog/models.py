@@ -5,7 +5,8 @@ from django.urls import reverse
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
-
+from django.conf import settings
+from users.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -18,6 +19,7 @@ class Category(models.Model):
         return reverse('blog-home')
 
 class Area(models.Model):
+    
     where = models.CharField(max_length=100)
 
     def __str__(self):

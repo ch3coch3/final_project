@@ -34,7 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'ask.apps.AskConfig',
     'blog.apps.BlogConfig',
-    'users.apps.UsersConfig',
+    'users',
     'crispy_forms',
     'ckeditor',
     'taggit',
@@ -138,3 +138,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
+
+AUTH_USER_MODEL = 'users.User'
