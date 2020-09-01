@@ -7,7 +7,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.postgres.fields import ArrayField
 from taggit.managers import TaggableManager
 from django.conf import settings
-
+from users.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=100)

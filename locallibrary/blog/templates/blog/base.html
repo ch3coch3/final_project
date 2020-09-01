@@ -327,7 +327,7 @@
                     
                 {% else %}
                     <li class="nav-item active">
-                        <a class="nav-link  text-white" href="{% url 'login' %}">Log in<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="{% url 'users:login' %}">Log in<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link  text-white" href="{% url 'register' %}">Sign up<span class="sr-only">(current)</span></a>
@@ -348,7 +348,7 @@
                         <div class="container">
                             <div class="media">
                                 <p class='lay1'>
-                                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="100" >
+                                    <img class="rounded-circle account-img" src="{{ user.image.url }}" width="100" height="100" >
                                     <div class="media-body">
                                         <h2 class="account-heading text-black">{{ user.username }}</h2>
                                         
