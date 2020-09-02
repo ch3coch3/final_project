@@ -18,7 +18,7 @@
    <div class='row'>
        <div class='col'>
            <form class='form-inline' action="{% url 'article_search' %}">
-               <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Search" name='searchTerm'>
+               <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Search" name='searchTerm'{% if searchTerm %} value="{{ searchTerm}}"{% endif %}>
                <input type='submit' class="btn btn-outline-light mb-2" value='查詢'>
            </form>
        </div>

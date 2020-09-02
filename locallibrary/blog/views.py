@@ -100,9 +100,6 @@ class AddCommentView(LoginRequiredMixin,CreateView):
         form.instance.name = self.request.user
         return super().form_valid(form)
 
-
-
-
 def AreaView(request,areas):
     area_posts = Post.objects.filter(area=areas)
     return render(request,'blog/area.html',{'areas':areas,'area_posts':area_posts})

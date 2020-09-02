@@ -235,6 +235,10 @@
         color: #adadad;
         cursor: pointer;
         }
+        #title{
+            font-family: 'Dancing Script', cursive;
+            font-size: 25px;
+        }
     </style>
 
 <head>
@@ -245,7 +249,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <title>
     {% block title %}
         Exchange
@@ -255,10 +259,10 @@
 
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
-        <a class="navbar-brand" href="{% url 'blog-home' %}">
+        <a class="navbar-brand" href="{% url 'blog-home' %}" id = "title">
             <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="ˇ" class="d-inline-block align-center"
-                alt="" loading="lazy">
-            Exchange
+                 alt="" loading="lazy">
+            A-Board
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

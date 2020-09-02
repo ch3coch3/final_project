@@ -5,7 +5,7 @@ choices = [('Course reviews', 'Course reviews'), ('Daily life', 'Daily life'), (
             ('Laws', 'Laws'), ('Transportation', 'Transportation'), ('Customs,traditions', 'Customs,traditions'), ('Expenses', 'Expenses'), 
             ('Accommodation', 'Accommodation'), ('Travel', 'Travel'), ('School reviews', 'School reviews'), ('Climate', 'Climate'),
             ('other', 'other')]
-choices_area = [('Americas', 'Americas'), ('Asia', 'Asia'), ('Europe', 'Europe'), ('Australia', 'Australia'), ('Africa', 'Africa'), ('Oceania', 'Oceania')]
+choices_area = [('Americas', 'Americas'), ('Asia', 'Asia'), ('Europe', 'Europe'), ('Africa', 'Africa'), ('Oceania', 'Oceania')]
 
 class PostForm(forms.ModelForm):
     # category = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,choices=choices)
