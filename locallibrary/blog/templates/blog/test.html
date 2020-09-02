@@ -120,7 +120,60 @@
           border-radius: 50%;
       }
     </style>
-    <style>
+<!--發問框設計-->
+<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    
+    button:hover {
+      opacity: 0.8;
+    }
+    
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      padding-top: 60px;
+    }
+    
+    /* Modal Content/Box */
+    .modal-content1 {
+      background-color: #fefefe;
+      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+      border: 1px solid #888;
+      width: 50%; /* Could be more or less, depending on screen size */
+    }
+    
+    /* Add Zoom Animation */
+    .animate {
+      -webkit-animation: animatezoom 0.6s;
+      animation: animatezoom 0.6s
+    }
+    
+    @-webkit-keyframes animatezoom {
+      from {-webkit-transform: scale(0)} 
+      to {-webkit-transform: scale(1)}
+    }
+      
+    @keyframes animatezoom {
+      from {transform: scale(0)} 
+      to {transform: scale(1)}
+    }
+    
+    /* Change styles for span and cancel button on extra small screens */
+    @media screen and (max-width: 300px) {
+      span.psw {
+         display: block;
+         float: none;
+      }
+    }
+
     /*聊天室設計*/
         .chat {
         float: left;
@@ -235,11 +288,7 @@
         color: #adadad;
         cursor: pointer;
         }
-        #title{
-            font-family: 'Dancing Script', cursive;
-            font-size: 25px;
-        }
-    </style>
+</style>
 
 <head>
     <!-- Required meta tags -->
@@ -249,7 +298,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
     <title>
     {% block title %}
         Exchange
@@ -259,10 +308,10 @@
 
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
-        <a class="navbar-brand" href="{% url 'blog-home' %}" id = "title">
+        <a class="navbar-brand" href="{% url 'blog-home' %}">
             <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="ˇ" class="d-inline-block align-center"
-                 alt="" loading="lazy">
-            A-Board
+                alt="" loading="lazy">
+            Exchange
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -284,34 +333,16 @@
         </div>
         <div>
             <ul class="nav justify-content-end">
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#" >聊天室<span class="sr-only">(current)</span></a>
+                </li>
                 {% if user.is_authenticated %}
-                        <div class="chat">
-                            <button class="chatbtn">Chat Room
-                                <i class="fa fa-caret-down"></i>
-                            </button>
-                                <div class="chat-content1">
-                                    <button class="friend" type="button" onclick="openForm()"><width="20" height="20">William
-                                    </button><br><br>
-                                    <button class="friend" type="button" onclick="openForm()"><width="20" height="20">Cindy
-                                    </button><br><br>
-                                    <button class="friend" type="button" onclick="openForm()"><width="20" height="20">Jessica
-                                    </button>
-                                </div>
-                        </div>
-                    {% if request.get_full_path == '/' %}
                     <li class="nav-item active"></li>
                         <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
                     </li>
-                    {% endif %}
-                    {% if request.get_full_path == '/ask/' %}
                     <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="{% url 'ask_post' %}">Ask Question<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
                     </li>
-                    {% endif %}
-                   
-                <li class="nav-item active" ></li>
-                    <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
-                </li>
                     
                 {% else %}
                     <li class="nav-item active">
@@ -321,6 +352,9 @@
                         <a class="nav-link  text-white" href="{% url 'register' %}">Sign up<span class="sr-only">(current)</span></a>
                     </li>
                 {% endif %}
+                <li class="nav-item active">
+                    <a class="nav-link  text-white" href="#" >中/EN<span class="sr-only">(current)</span></a>
+                </li>
             </ul>
         </div>
  <!--會員資料展開頁-->
@@ -436,7 +470,6 @@
             }
         }
     </script>
-    <!--聊天室-->
     <script>
         function openForm() {
             document.getElementById("myForm").style.display = "block";

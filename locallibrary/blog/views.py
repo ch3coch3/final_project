@@ -102,6 +102,7 @@ class AddCommentView(LoginRequiredMixin,CreateView):
 
 def AreaView(request,areas):
     area_posts = Post.objects.filter(area=areas)
+    # ordering = ['-date_posted']
     return render(request,'blog/area.html',{'areas':areas,'area_posts':area_posts})
 
 

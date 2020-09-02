@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'newsboard',
 ]
 
-CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_UPLOAD_PATH = "uploads/" 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,7 +133,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/uploader/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
