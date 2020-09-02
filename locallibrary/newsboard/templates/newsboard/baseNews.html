@@ -257,13 +257,13 @@
                     <a class="nav-link" href="{% url 'ask' %}">Ask <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
-            <div class="collapse navbar-collapse">
+            <div class="collapse navbar-collapse"  id="navbarSupportedContent">
                 {% include 'newsboard/article_search_form.html' %}
                 <p class='inlineBlock'></p></li>
             </div>
         </div>
-        <div>
-            <ul class="nav justify-content-end">
+        <div id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
                     <div class="chat">
                         <button class="chatbtn">Chat Room
@@ -278,7 +278,7 @@
                                 </button>
                             </div>
                     </div>
-                    <li class="nav-item active"></li>
+                    <li class="nav-item active">
                         <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
                     </li>
                     
@@ -292,53 +292,51 @@
                 {% endif %}
             </ul>
         </div>
-        <!--會員資料展開頁-->
+    <!--會員資料展開頁-->
 
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="container">
-                            <div class="media">
-                                <p class='lay1'>
-                                    <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="100" >
-                                    <div class="media-body">
-                                        <h2 class="account-heading text-black">{{ user.username }}</h2>
-                                        
-                                    </div>
-                                </p>
-                            </div>
-                                <p class="lay2">
-                                    <h5 class="text-black">
-                                            {{ user.email }}
-                                    </h5>
-                                
-                                </p>
-                            
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="container">
+                        <div class="media">
+                            <p class='lay1'>
+                                <img class="rounded-circle account-img" src="{{ user.profile.image.url }}" width="100" height="100" >
+                                <div class="media-body">
+                                    <h2 class="account-heading text-black">{{ user.username }}</h2>
+                                    
+                                </div>
+                            </p>
                         </div>
-                        
+                            <p class="lay2">
+                                <h5 class="text-black">
+                                        {{ user.email }}
+                                </h5>
+                            
+                            </p>
                         
                     </div>
-                </div>
-                <hr>
-                
-                <div class="nav-item active">
-                    <a class="button  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
+                    
                     
                 </div>
+            </div>
+            <hr>
+            
+            <div class="nav-item active">
+                <a class="button  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
                 
-                
-                <footer class="footer">
-                    <div class="nav-item active" >
-                        <a class="nav-link  text-dark" href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
-                    </div>
-                </footer>
-                
+            </div>
+            
+            
+            <footer class="footer">
+                <div class="nav-item active" >
+                    <a class="nav-link  text-dark" href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
+                </div>
+            </footer>
             
                 
-            
-        </div>
+    </div>
 
 <!--會員資料展開頁---end-->
     </nav>
@@ -380,6 +378,9 @@
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>

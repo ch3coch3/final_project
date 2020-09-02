@@ -10,12 +10,9 @@ from .views import (
     AreaView,
     AreaCategoryView,
 )
-<<<<<<< HEAD
 from ask.views import AskView,AskPostView,AskDetailView,AskCommentView
 from newsboard import news_views
 from newsboard.news_views import Newshome, ArticleDetailView, ArticleCreateView, ArticleUpdateView, ArticleDeleteView, AddArticleView
-=======
->>>>>>> registerform
 from .import views
 
 urlpatterns = [
