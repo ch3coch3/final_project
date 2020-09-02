@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView,DetailView,CreateView
 from .models import Askpost,AskComment
 from .forms import PostForm,CommentForm
+from django.db.models.query_utils import Q
 
 class AskView(ListView):
     model = Askpost
@@ -33,3 +34,8 @@ class AskCommentView(LoginRequiredMixin,CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
    
+def askSearch(request):
+    searchTerm = request.GET.get('searchTerm')
+    askposts = Askpost.objects.filter(Q(title__icontains = searchTerm) | Q(content__icontains=searchTerm))
+    context = {'askposts':askposts,'searchTerm':searchTerm}
+    return render(request, 'ask/askSearch.html',context)

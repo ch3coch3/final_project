@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}查詢結果{% endblock %}
+{% block css %}
+<link rel='stylesheet' href="{% static 'article/css/article.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css"/>
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+</head>
+<br><br>
+<hr>
+<style>
+    p{
+        text-align:center;
+    }
+    table{
+        margin:auto;
+        width: 100%;
+        text-align:center;
+    }
+</style>
+<body>
+    {% if not askposts %}
+    <p>No results</p>
+    {% else %}
+        <table class='table table-striped table-hover' style='width: 67%' id="mydatatable">
+            <thead>
+                <tr><th>標題</th><th>發文時間</th></tr>
+            </thead>
+            <tbody>
+                {% for askpost in askposts %} 
+                <tr>
+                    <td><a href="{% url 'ask-detail' askpost.id %}">{{ askpost.title }}</a></td>
+                    <td>{{ askpost.date_posted|date:"F d, Y" }}</td>
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    {% endif %}
+
+</body>
+{% endblock %}

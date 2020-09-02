@@ -257,7 +257,7 @@
     </title>
 </head>
 
-<body>
+<body style="background-color:hsl(171,50%,76%);">
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
         <a class="navbar-brand" href="{% url 'blog-home' %}" id = "title">
             <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="ˇ" class="d-inline-block align-center"
@@ -278,7 +278,11 @@
                 </li>
             </ul>
             <div class = 'collapse navbar-collapse'>
-                {% include 'blog/searchForm.html' %}
+                {% if 'ask/' in request.path %}
+                    {% include 'ask/searchForm.html' %}
+                {% else %}    
+                    {% include 'blog/searchForm.html' %}
+                {% endif %}
                 <p class='inlineBlock'></p>
             </div>
         </div>

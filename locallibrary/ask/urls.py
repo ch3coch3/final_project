@@ -8,4 +8,5 @@ urlpatterns = [
     path('askpost/',AskPostView.as_view(),name='ask_post'),
     path('askpost/<int:pk>/', AskDetailView.as_view(), name = 'ask-detail'),
     path('ask/<int:pk>/comment', AskCommentView.as_view(), name = 'ask-comment'),
+    path('askSearch/',views.askSearch, name = 'askSearch')
 ]
