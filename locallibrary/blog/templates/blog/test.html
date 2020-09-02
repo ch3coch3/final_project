@@ -288,7 +288,6 @@
         color: #adadad;
         cursor: pointer;
         }
-        
 </style>
 
 <head>
@@ -309,10 +308,10 @@
 
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-info">
-        <a class="navbar-brand border-white" href="{% url 'blog-home' %}">
+        <a class="navbar-brand" href="{% url 'blog-home' %}">
             <img src="68974800_2683272961704428_5445777330259623936_n.jpg" width="50" height="ˇ" class="d-inline-block align-center"
                 alt="" loading="lazy">
-            A-Board
+            Exchange
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -337,21 +336,13 @@
                 <li class="nav-item active">
                     <a class="nav-link  text-white" href="#" >聊天室<span class="sr-only">(current)</span></a>
                 </li>
-                {% if user.is_authenticated  %}
-                    {% if request.get_full_path == '/' %}
+                {% if user.is_authenticated %}
                     <li class="nav-item active"></li>
                         <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
                     </li>
-                    {% endif %}
-                    {% if request.get_full_path == '/ask/' %}
                     <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="{% url 'ask_post' %}">Ask Question<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
                     </li>
-                    {% endif %}
-                   
-                <li class="nav-item active" ></li>
-                    <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
-                </li>
                     
                 {% else %}
                     <li class="nav-item active">

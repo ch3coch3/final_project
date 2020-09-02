@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'newsboard',
 ]
-TIME_ZONE = 'Asia/Taipei'
 
-CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_UPLOAD_PATH = "uploads/" 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/uploader/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

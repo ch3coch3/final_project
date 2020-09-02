@@ -1,4 +1,4 @@
-{% extends "ask/ask_base.html" %}
+{% extends "blog/base.html" %}
 {% block content %}
 <style>
     h3{
@@ -10,7 +10,7 @@
     <br><br> 
     {% for post in askposts %}
     <article class="media content-section bg-light rounded border border-light">
-        <!-- <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="{{ post.author }}" width="25" height = "25"> -->
+        <img class="rounded-circle article-img" src="{{ post.user.image.url }}" alt="{{ post.author }}" width="25" height = "25">
         <div class="media-body">
           <div class="article-metadata">
           </div></h5>

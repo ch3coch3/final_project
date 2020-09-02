@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ object.title }}{% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 <p class='inlineBlock'></p>
     <div class="row">
@@ -24,6 +25,7 @@
                     {% else %}
                     <small><a href=" {% url 'ask-comment' object.pk %} ">Add comment</a></small>
                     {%　endif %}
+                    
                 </div>
             </article>
         </div>
