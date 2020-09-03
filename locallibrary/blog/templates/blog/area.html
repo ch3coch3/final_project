@@ -1,33 +1,36 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ areas }}{% endblock %}
 {% block content %}
+<style>
+    .media{
+        border-radius: 20px;
+    }
+</style>
 <p class='inlineBlock'></p>
     <div class="row">
         <div class="col-12 col-md-2">
             <div div class="btn-group-vertical h-90 d-inline-block" style="width: 11rem;">
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Course-reviews/">Course reviews</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Daily-life/">Daily life</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Foods/">Foods</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Entertainment/">Entertainment</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Laws/">Laws</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Transportation/">Transportation</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Customs,traditions/">Customs,traditions</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Expenses/">Expenses</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Accommodation/">Accommodation</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Travel/">Travel</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/School-reviews/">School reviews</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Climate/">Climate</a></button>
+                <button type="button" class="btn btn-light"><img src="/media/uploads/icon/school.PNG" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Course-reviews/">Course reviews</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\lifestyle.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Daily-life/">Daily life</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\food.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Foods/">Foods</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\concert.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Entertainment/">Entertainment</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\law.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Laws/">Laws</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\train.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Transportation/">Transportation</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\culture.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Customs,traditions/">Customs</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\money.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Expenses/">Expenses</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\room.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Accommodation/">Accommodation</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\travel.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Travel/">Travel</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\college.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/School-reviews/">School reviews</a></button>
+                <button type="button" class="btn btn-light"><img src="/media\uploads\icon\cloudy.png" alt="" width="25" height="25" style="float:left"><a href="/area/{{ areas }}/Climate/">Climate</a></button>
             </div>
         </div>
         <div class="col-12 col-md-10">       
-            {% for post in area_posts reversed %}
-            <article class="media content-section ">
-                
-                <div class="media-body bg-light">
+            {% for post in area_posts %}
+            <article class="media content-section bg-light">
+                <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
+                <div class="media-body">
                   <div class="article-metadata">
-                    <h5>
-                        <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
-                        <a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
+                    <h5><a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
                    <small class="float-right">
                         <a href="{% url 'area' post.area %}">{{ post.area }}</a>
                         
@@ -38,7 +41,7 @@
                         ,{{ post.date_posted|date:"F d,Y"}}
                     </small></small><hr>
                     {% for tag in post.tags.all %}
-                    <small><span class="badge badge-pill  text-info border border-info  float-right">
+                    <small><span class="font-weight-normal badge badge-pill  text-info border border-info  float-right">
                         {{ tag }}
                         </span></small>
                         {% endfor %}

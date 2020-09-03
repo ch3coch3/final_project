@@ -1,4 +1,4 @@
-{% extends "blog/base.html" %}
+{% extends "newsboard/baseNews.html" %}
 {% block content %}
 <div class='container'>
     <div class="row">
@@ -13,7 +13,7 @@
                     <h5><br><small><small class="text-muted float-right">{{ newsarticle.pubDateTime|date:"F d, Y"}}</small></small><hr>
                   </div></h5>
                   <h2 class="article-title text-secondary">{{ newsarticle.title }}</h2>
-                  <p class="article-content">{{ newsarticle.body|safe|truncatechars_html:200 }}</p>
+                  <p class="article-content">{{ newsarticle.body|safe|truncatechars_html:100 }}</p>
                   <a href="{% url 'article-detail' newsarticle.pk %}" class="text-secondary float-right">(see more...)</a>
                 </div>
             </article>

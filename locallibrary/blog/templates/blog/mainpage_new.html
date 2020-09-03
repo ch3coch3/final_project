@@ -1,25 +1,35 @@
 {% extends "blog/base.html" %}
 {% block content %}
+<style>
+    .media-body{
+        border-radius: 10px;
+    }
+
+    .btn-light{
+        background-color: #f5f5f5f3;
+        border-color: #d9d9d9;
+    }
+</style>
     <div class="row">
         <div class="col-12 col-md-2">
             <div div class="btn-group-vertical h-90 d-inline-block" style="width: 11rem;">
-                <button type="button" class="btn btn-light"><a href="area/Americas/">Americas</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Asia/">Asia</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Europe/">Europe</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Africa/">Africa</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Oceania/">Oceania</a></button>
+                <button type="button" class="btn btn-light"><img src="media/uploads/icon/americas.PNG" alt="" width="25" height="25" style="float:left"><a href="area/Americas/">Americas</a></button>
+                <button type="button" class="btn btn-light"><img src="media/uploads/icon/asia.PNG" alt="" width="25" height="25" style="float:left"><a href="area/Asia/">Asia</a></button>
+                <button type="button" class="btn btn-light"><img src="media/uploads/icon/europe.PNG" alt="" width="25" height="25" style="float:left"><a href="area/Europe/">Europe</a></button>
+                <button type="button" class="btn btn-light"><img src="media/uploads/icon/oceania.PNG" alt="" width="25" height="25" style="float:left"><a href="area/Australia/">Australia</a></button>
+                <button type="button" class="btn btn-light"><img src="media/uploads/icon/africa.PNG" alt="" width="25" height="25" style="float:left"><a href="area/Africa/">Africa</a></button>
+                <button type="button" class="btn btn-light"><img src="media/uploads/icon/oceania.PNG" alt="" width="25" height="25" style="float:left"><a href="area/Oceania/">Oceania</a></button>
             </div>
         </div>
         <div class="col-12 col-md-10">
             <br><br>          
             {% for post in posts %}
             <article class="media content-section">
-                
-                <div class="media-body bg-light">
+                <div class="media-body" style="background-color: #f5f5f5d0;">
                   <div class="article-metadata">
                     <h5>
                         <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
-                        <a class="mr-2 text-secondary" href="#">&nbsp;{{ post.author }}</a><br>
+                        <a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
                    <small class="float-right">
                         <a href="{% url 'area' post.area %}">{{ post.area }}</a>
                         <!-- {% for cat in post.category %}
@@ -28,7 +38,7 @@
                         ,{{ post.date_posted|date:"F d,Y"}}
                     </small><hr>
                     {% for tag in post.tags.all %}
-                        <small><p class="float-right"> &ensp; </p><span class="badge badge-pill  text-info border border-info  float-right">
+                        <small><span class="badge badge-pill  text-info border border-info  float-right">
                         {{ tag }}
                         </span></small>
                     {% endfor %}
