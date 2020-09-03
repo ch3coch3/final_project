@@ -312,7 +312,7 @@
             <ul class="nav justify-content-end">
                 {% if user.is_authenticated %}
                         <div class="chat">
-                            <button class="chatbtn" id="profilebar1">Chat Room
+                            <button class="chatbtn">Chat Room
                                 <i class="fa fa-caret-down"></i>
                             </button>
                                 <div class="chat-content1">
@@ -350,54 +350,51 @@
                 {% endif %}
             </ul>
         </div>
- <!--會員資料展開頁-->
 
- <div id="mySidenav" class="sidenav">
+
+    
+    <!--會員資料展開頁-->
+
+    <div id="mySidenav" class="sidenav">
+                
             
-        
-    <div class="row">
-        <div class="col-md-8">
-            <div class="container">
-                <div class="media">
-                    <p class='lay1'>
-                        <img class="rounded-circle  account-img "  src="{{ user.image.url }}" width="100" height="100" >
+        <div class="row">
+            <div class="col-md-8">
+                <div class="container">
+                    <div class="media">
+                        <p class='lay1'>
+                            <img class="rounded-circle  account-img "  src="{{ user.image.url }}" width="100" height="100" >
+                        </p>
+                    </div>        
+                </div>
+                <div class="col" >
+                    <p class="lay2">
+                        <h2 class="text-black" style="text-align:left;">
+                            {{ user.username }}
+                        </h2>
                     </p>
-                </div>        
-            </div>
-            <div class="col" >
-                <p class="lay2">
-                    <h2 class="text-black" style="text-align:left;">
-                        {{ user.username }}
-                    </h2>
-                </p>
-                <p class="lay3">
-                    <h5 class="text-black "style="text-align:left;">
-                            {{ user.email }}
-                    </h5>
-                </p>
+                    <p class="lay3">
+                        <h5 class="text-black "style="text-align:left;">
+                                {{ user.email }}
+                        </h5>
+                    </p>
 
+                </div>
+                
+                
             </div>
-            
-            
         </div>
+        <hr>
+        
+        <div class="nav-item active">
+            <a class="button1  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
+            <a class="button2  text-dark " href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
+        </div>
+        
     </div>
-    <hr>
-    
-    <div class="nav-item active">
-        <a class="button1  text-dark" href="{% url 'profile' %}">Update<span class="sr-only">(current)</span></a>
-        <a class="button2  text-dark " href="{% url 'logout' %}" >Log out<span class="sr-only">(current)</span></a>
-    </div>
-    
-    
-    
-    
-
-    
-
-</div>
-
 <!--會員資料展開頁---end-->
     </nav>
+
      <!--會員資料展開頁-->
     
 
@@ -447,6 +444,9 @@
     
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
