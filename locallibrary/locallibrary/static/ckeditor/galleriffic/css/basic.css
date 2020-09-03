@@ -61,3 +61,6 @@ div#footer {
 	padding: 20px 0 40px;
 	text-align: center;
 }
+.cke_button__source_label {
+    display: none !important;
+}

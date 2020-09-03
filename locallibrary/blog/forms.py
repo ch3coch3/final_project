@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title','area','tags','content')
-
+         
         widgets = {
             'title':forms.TextInput(attrs={'class':'form-control'}),
             'author':forms.Select(attrs={'class':'form-control'}),

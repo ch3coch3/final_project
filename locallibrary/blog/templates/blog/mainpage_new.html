@@ -29,9 +29,9 @@
                         ,{{ post.date_posted|date:"F d,Y"}}
                     </small><hr>
                     {% for tag in post.tags.all %}
-                        <small><span class="badge badge-pill  text-info border border-info  float-right">
-                        {{ tag }}
-                        </span></small>
+                        <small><tag class="badge badge-pill  text-info border border-info  float-right">
+                            {{ tag }}
+                        </tag></small>
                     {% endfor %}
                     
                   </div></h5>

@@ -51,6 +51,21 @@ INSTALLED_APPS = [
 
 CKEDITOR_UPLOAD_PATH = "uploads/" 
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
+            ['TextColor', 'BGColor'],
+            ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter',
+                 'JustifyRight', 'JustifyBlock'],
+            ["Image", "Table", "Link", "Unlink", "SectionLink"], ['Undo', 'Redo'],
+            ["Maximize"]
+        ]
+    }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

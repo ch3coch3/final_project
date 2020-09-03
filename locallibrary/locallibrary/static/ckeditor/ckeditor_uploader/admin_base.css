@@ -1,7 +1,9 @@
 /** parts of django admin base.css needed by django-ckeditor uploader **/
 
 /* GLOBAL DEFAULTS */
-
+.cke_button__source_label {
+    display: none !important;
+}
 form {
     margin: 0;
     padding: 0;
