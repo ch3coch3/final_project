@@ -11,8 +11,10 @@ from .models import Post,Comment,Category
 from .forms import PostForm,CommentForm
 from django.db.models.query_utils import Q
 
-
-
+area_board = ['Americas','Asia','Europe','Africa','Oceania']
+categories = ['Course reviews','Daily life','Foods','Entertainment','Laws','Transportation','Customs,traditions',
+            'Expenses','Accomodation','Travel','School reviews','Climate']
+posts = Post.objects.all()
 # def home(request):
     # context = {
         # 'posts':Post.objects.all()
@@ -28,6 +30,13 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']          # 讓貼文以時間排序
     paginate_by = 4                    # 每頁只顯示四個貼文
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['area_board'] = area_board
+        # print(context)
+        print(**kwargs)
+        return context
+
 
 
 # 管理點入貼文後的詳細資訊
@@ -103,12 +112,12 @@ class AddCommentView(LoginRequiredMixin,CreateView):
 def AreaView(request,areas):
     area_posts = Post.objects.filter(area=areas)
     # ordering = ['-date_posted']
-    return render(request,'blog/area.html',{'areas':areas,'area_posts':area_posts})
+    return render(request,'blog/area.html',{'areas':areas,'area_posts':area_posts,'categories':categories})
 
 
 def AreaCategoryView(request,areas,cats):
     area_posts = Post.objects.filter(area=areas,tags__name__in=[cats.replace('-',' ')])
-    return render(request,'blog/area_category.html',{'areas':areas,'cats':cats,'area_posts':area_posts})
+    return render(request,'blog/area_category.html',{'areas':areas,'cats':cats,'area_posts':area_posts,'categories':categories})
 
 def areaArticleSearch (request):
     searchTerm=request.GET.get('searchTerm')

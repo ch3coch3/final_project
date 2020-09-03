@@ -3,11 +3,9 @@
     <div class="row">
         <div class="col-12 col-md-2">
             <div div class="btn-group-vertical h-90 d-inline-block" style="width: 11rem;">
-                <button type="button" class="btn btn-light"><a href="area/Americas/">Americas</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Asia/">Asia</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Europe/">Europe</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Africa/">Africa</a></button>
-                <button type="button" class="btn btn-light"><a href="area/Oceania/">Oceania</a></button>
+                {% for area in area_board %}
+                <a class="btn btn-light text-primary" href="area/Americas/">{{ area }}</a>
+                {% endfor %}
             </div>
         </div>
         <div class="col-12 col-md-10">

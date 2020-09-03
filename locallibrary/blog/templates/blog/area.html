@@ -5,18 +5,9 @@
     <div class="row">
         <div class="col-12 col-md-2">
             <div div class="btn-group-vertical h-90 d-inline-block" style="width: 11rem;">
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Course-reviews/">Course reviews</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Daily-life/">Daily life</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Foods/">Foods</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Entertainment/">Entertainment</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Laws/">Laws</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Transportation/">Transportation</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Customs,traditions/">Customs,traditions</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Expenses/">Expenses</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Accommodation/">Accommodation</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Travel/">Travel</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/School-reviews/">School reviews</a></button>
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Climate/">Climate</a></button>
+                {% for category in categories %}
+                    <a class="btn btn-light text-primary" href="/area/{{ areas }}/{{ category }}/">{{ category }}</a>
+                {% endfor %}
             </div>
         </div>
         <div class="col-12 col-md-10">       
@@ -38,7 +29,7 @@
                         ,{{ post.date_posted|date:"F d,Y"}}
                     </small></small><hr>
                     {% for tag in post.tags.all %}
-                    <small><span class="badge badge-pill  text-info border border-info  float-right">
+                    <small><p class="float-right"> &ensp;<span class="badge badge-pill  text-info border border-info  float-right">
                         {{ tag }}
                         </span></small>
                         {% endfor %}

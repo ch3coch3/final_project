@@ -5,7 +5,19 @@
     h2{
         display: inline;
     }
-    
+    .button {
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .Update {background-color: blue;} /* Green */
+    .Delete {background-color: red;} /* Blue */
 </style>
 <p class='inlineBlock'></p>
     <div class="row">
@@ -25,6 +37,8 @@
                     {% if object.author == user %}
                     <a class="badge badge-pill text-secondary border border-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
                     <a class="badge badge-pill text-danger border border-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                    <!-- <button class='button Update'><a href="{% url 'post-update' object.id %}">Update</a></button>
+                    <button class='button Delete'><a href="{% url 'post-delete' object.id %}">Delete</a></button> -->
                     {% endif %}
                     {{ post.content|safe }}
                      <!-- comment -->
