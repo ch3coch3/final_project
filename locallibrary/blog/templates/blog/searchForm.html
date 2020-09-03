@@ -1,19 +1,20 @@
- <style>
-     .form-inline{
-         height: 50%;
-         margin: 0;
-         z-index: 999;  /*圖層. 999->浮到最上面*/
-         padding-left: 4px;
-     }
-     form{height:10px}
- </style>
+<style>
+    .form-inline{
+        height: 50%;
+        margin: 0;
+        z-index: 999;  /*圖層. 999->浮到最上面*/
+        padding-left: 4px;
+    }
+    form{height:10px}
+</style>
  <!-- Required meta tags -->
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
  <!-- Bootstrap CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/c68508adf7.js" crossorigin="anonymous"></script>
 
 <div class="container-fluid">
     <div class='row'>
@@ -21,7 +22,7 @@
         <div class='col'>
             <form class='form-inline' action="{% url 'articleSearch' %}">
                 <input type="text" class="form-control  mb-2 mr-sm-2" placeholder="Search" name='searchTerm'{% if searchTerm %} value="{{ searchTerm}}"{% endif %}>
-                <input type='submit' class="btn btn-outline-light mb-2" value='查詢'>
+                <button type='submit' class="btn"><i class="fas fa-search" style='font-size:21px;color:#ffffff'></i></button>
             </form>
         </div>
     </div>
