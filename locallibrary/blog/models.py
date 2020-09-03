@@ -7,6 +7,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
 from django.conf import settings
 from users.models import User
+from django_bleach.models import BleachField
+from blog.widget import RichTextBleachField
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -35,7 +37,7 @@ class Post(models.Model):
     date_posted  = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)  # 刪除使用者時也刪除其貼文，但刪除貼文不會刪除使用者
     other = models.CharField(max_length=200)
-    content = RichTextUploadingField(blank=True,null=True)
+    content = RichTextBleachField(blank=True,null=True)
     category = models.CharField(max_length=100,default='Food')
     area = models.CharField(max_length=100,default='Taiwan')
     tags = TaggableManager()

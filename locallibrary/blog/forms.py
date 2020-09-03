@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post,Comment,Category,Area
+from blog.widget import RichTextBleachField
 
 choices = [('Course reviews', 'Course reviews'), ('Daily life', 'Daily life'), ('Foods', 'Foods'), ('Entertainment', 'Entertainment'), 
             ('Laws', 'Laws'), ('Transportation', 'Transportation'), ('Customs,traditions', 'Customs,traditions'), ('Expenses', 'Expenses'), 
@@ -19,6 +20,7 @@ class PostForm(forms.ModelForm):
             'author':forms.Select(attrs={'class':'form-control'}),
             'other':forms.TextInput(attrs={'class':'form-control','placeholder':'America'}),
             'content':forms.Textarea(attrs={'class':'form-control'}),
+            # 'content':RichTextBleachField(),
             # 'category':forms.Select(choices=choices,attrs={'class':'form-control'}),
             # 'category':forms.CheckboxSelectMultiple(choices=choices,attrs={'class':'form-control'}),
             'area':forms.Select(choices=choices_area,attrs={'class':'form-control'}),
