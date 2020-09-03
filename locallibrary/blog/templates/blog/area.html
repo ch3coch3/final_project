@@ -21,11 +21,13 @@
         </div>
         <div class="col-12 col-md-10">       
             {% for post in area_posts reversed %}
-            <article class="media content-section bg-light">
-                <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
-                <div class="media-body">
+            <article class="media content-section ">
+                
+                <div class="media-body bg-light">
                   <div class="article-metadata">
-                    <h5><a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
+                    <h5>
+                        <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
+                        <a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
                    <small class="float-right">
                         <a href="{% url 'area' post.area %}">{{ post.area }}</a>
                         

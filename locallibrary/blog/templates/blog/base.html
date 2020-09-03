@@ -280,7 +280,8 @@
             <div class = 'collapse navbar-collapse'>
                 {% if 'ask/' in request.path %}
                     {% include 'ask/searchForm.html' %}
-                {% else %}    
+                {% elif '/news' in request.path %}    
+                {% else %}
                     {% include 'blog/searchForm.html' %}
                 {% endif %}
                 <p class='inlineBlock'></p>
@@ -302,16 +303,17 @@
                                     </button>
                                 </div>
                         </div>
-                    {% if request.get_full_path == '/' %}
-                    <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
-                    </li>
+                    {% if 'ask/' in request.path %}
+                        <li class="nav-item active"></li>
+                            <a class="nav-link  text-white" href="{% url 'ask_post' %}">Ask Question<span class="sr-only">(current)</span></a>
+                        </li>
+                    {% elif '/news' in request.path %}    
+                    {% else %}
+                        <li class="nav-item active"></li>
+                            <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
+                        </li>
                     {% endif %}
-                    {% if request.get_full_path == '/ask/' %}
-                    <li class="nav-item active"></li>
-                        <a class="nav-link  text-white" href="{% url 'ask_post' %}">Ask Question<span class="sr-only">(current)</span></a>
-                    </li>
-                    {% endif %}
+                    
                    
                 <li class="nav-item active" ></li>
                     <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
