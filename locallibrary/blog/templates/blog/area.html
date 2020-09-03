@@ -4,6 +4,9 @@
 <style>
 body {background-color: hsl(189, 90%, 94%);}
 #para1 { background-color: hsl(50, 90%, 94%);}
+.media{
+        border-radius: 20px;
+    }
 </style>
 <body>
 <p class='inlineBlock'></p>
@@ -20,9 +23,7 @@ body {background-color: hsl(189, 90%, 94%);}
             <article class="media content-section ">
                 <div class="media-body bg-light">
                   <div class="article-metadata">
-                    <h5>
-                        <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
-                        <a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
+                    <h5><a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
                    <small class="float-right">
                         <a href="{% url 'area' post.area %}">{{ post.area }}</a>
                         

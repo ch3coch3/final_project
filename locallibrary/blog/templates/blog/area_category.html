@@ -1,12 +1,19 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ areas }}{% endblock %}
 {% block content %}
+<style>
+    .media{
+        border-radius: 20px;
+    }
+</style>
 <p class='inlineBlock'></p>
     <div class="row">
         <div class="col-12 col-md-2">
             <div div class="btn-group-vertical h-90 d-inline-block" style="width: 11rem;">
                 {% for category in categories %}
-                    <a class="btn btn-light text-primary" href="/area/{{ areas }}/{{ category }}/">{{ category }}</a>
+                    <a class="btn btn-light text-primary" href="/area/{{ areas }}/{{ category }}/">
+                        <img src="/media\uploads\icon\school.png" alt="" width="25" height="25" style="float:left">{{ category }}
+                    </a>
                 {% endfor %}
             </div>
         </div>
@@ -16,9 +23,7 @@
                 
                 <div class="media-body bg-light">
                   <div class="article-metadata">
-                    <h5>
-                        <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
-                        <a class="mr-2 text-secondary" href="#">&nbsp;{{ post.author }}</a><br>
+                    <h5><a class="mr-2 text-secondary" href="#">{{ post.author }}</a><br>
                     <small class="float-right">
                         <a href="{% url 'area' post.area %}">{{ post.area }}</a>
                         ,{{ post.date_posted|date:"F d,Y"}}
