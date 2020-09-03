@@ -12,7 +12,11 @@ from .forms import PostForm,CommentForm
 from django.db.models.query_utils import Q
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger,InvalidPage
 
+# area_board = {'area':['Americas','Asia','Europe','Africa','Oceania'],'path':['media/uploads/icon/americas.png','media/uploads/icon/asia.png','media/uploads/icon/europe.png',
+            # 'media/uploads/icon/oceania.png','media/uploads/icon/africa.png','media/uploads/icon/oceania.png']}
 area_board = ['Americas','Asia','Europe','Africa','Oceania']
+# area_path = ['media/uploads/icon/americas.png','media/uploads/icon/asia.png','media/uploads/icon/europe.png',
+#             'media/uploads/icon/oceania.png','media/uploads/icon/africa.png','media/uploads/icon/oceania.png']
 categories = ['Course reviews','Daily life','Foods','Entertainment','Laws','Transportation','Customs,traditions',
             'Expenses','Accomodation','Travel','School reviews','Climate']
 posts = Post.objects.all()

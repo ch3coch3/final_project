@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% block title %}{{ areas }}{% endblock %}
 {% block content %}
 <style>
     .media-body{
@@ -13,11 +14,22 @@
     <div class="row">
         <div class="col-12 col-md-2">
             <div div class="btn-group-vertical h-90 d-inline-block" style="width: 11rem;">
-                {% for area in area_board %}
+                
                 <a class="btn btn-light text-primary" href="area/Americas/">
-                    <img src="media/uploads/icon/americas.PNG" alt="" width="25" height="25" style="float:left">{{ area }}
+                    <img src="media/uploads/icon/americas.png" alt="" width="25" height="25" style="float:left">Americas
                 </a>
-                {% endfor %}
+                <a class="btn btn-light text-primary" href="area/Asia/">
+                    <img src="media/uploads/icon/asia.png" alt="" width="25" height="25" style="float:left">Asia
+                </a>
+                <a class="btn btn-light text-primary" href="area/Europe/">
+                    <img src="media/uploads/icon/europe.png" alt="" width="25" height="25" style="float:left">Europe
+                </a>
+                <a class="btn btn-light text-primary" href="area/Africa/">
+                    <img src="media/uploads/icon/africa.png" alt="" width="25" height="25" style="float:left">Africa
+                </a>
+                <a class="btn btn-light text-primary" href="area/Oceania/">
+                    <img src="media/uploads/icon/oceania.png" alt="" width="25" height="25" style="float:left">Oceania
+                </a>
             </div>
         </div>
         <div class="col-12 col-md-10">

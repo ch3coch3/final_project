@@ -283,8 +283,7 @@
 <body style="background-color:hsl(44,26%,85%);">
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-secondary">
         <a class="navbar-brand" href="{% url 'blog-home' %}" id="title">
-            <img src="logofinal.png" width="50" height="40" class="d-inline-block align-center"
-                alt="" loading="lazy">
+            <img src="/media/uploads/icon/logofinal.png" width="50" height="40" class="d-inline-block align-center" alt="" loading="lazy">
             A-Board
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -301,7 +300,11 @@
                 </li>
             </ul>
             <div class = 'collapse navbar-collapse'>
-                {% include 'blog/searchForm.html' %}
+                {% if 'ask/' in request.path %}
+                    {% include 'ask/searchForm.html' %}
+                {% else %}    
+                    {% include 'blog/searchForm.html' %}
+                {% endif %}
                 <p class='inlineBlock'></p>
             </div>
         </div>
