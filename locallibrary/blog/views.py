@@ -10,6 +10,7 @@ from django.views.generic import (
 from .models import Post,Comment,Category
 from .forms import PostForm,CommentForm
 from django.db.models.query_utils import Q
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger,InvalidPage
 
 
 
@@ -26,6 +27,7 @@ class PostListView(ListView):
     model = Post                         # 以Post為基礎建立
     template_name = 'blog/mainpage_new.html' # <app>/<model>_<viewtype>.html 尋找樣板顯示(顯示主頁)
     context_object_name = 'posts'
+    
     ordering = ['-date_posted']          # 讓貼文以時間排序
     #spaginate_by = 4                    # 每頁只顯示四個貼文
 
@@ -104,13 +106,38 @@ class AddCommentView(LoginRequiredMixin,CreateView):
 
 
 def AreaView(request,areas):
-    area_posts = Post.objects.filter(area=areas)
-    return render(request,'blog/area.html',{'areas':areas,'area_posts':area_posts})
+    area_posts = Post.objects.filter(area=areas).order_by('-date_posted')
+    paginator=Paginator(area_posts, 5 )
+    #count_number=visit_num.objects.get()
+    #count_number.viewed()
+    current_page=request.GET.get('page')
+    
+    try:
+        post_s=paginator.page(current_page)
+    except PageNotAnInteger:
+        post_s=paginator.page(1)
+    except EmptyPage:
+        post_s=paginator.page(paginator.num_pages)
+
+    return render(request,'blog/area.html',{'areas':areas,'area_posts':area_posts,'post_s':post_s})
 
 
 def AreaCategoryView(request,areas,cats):
-    area_posts = Post.objects.filter(area=areas,tags__name__in=[cats.replace('-',' ')])
-    return render(request,'blog/area_category.html',{'areas':areas,'cats':cats,'area_posts':area_posts})
+    area_posts = Post.objects.filter(area=areas,tags__name__in=[cats.replace('-',' ')]).order_by('-date_posted')
+    paginator=Paginator(area_posts, 5 )
+    #count_number=visit_num.objects.get()
+    #count_number.viewed()
+    current_page=request.GET.get('page')
+    try:
+        post_s=paginator.page(current_page)
+    except PageNotAnInteger:
+        post_s=paginator.page(1)
+    except EmptyPage:
+        post_s=paginator.page(paginator.num_pages)
+
+    return render(request,'blog/area_category.html',{'areas':areas,'area_posts':area_posts,'post_s':post_s})
+
+    
 
 def areaArticleSearch (request):
     searchTerm=request.GET.get('searchTerm')
@@ -120,3 +147,22 @@ def areaArticleSearch (request):
 
 def news(request):
     return render(request, 'newsboard/news.html')
+
+
+
+def index(request):
+    posts_list=Post.objects.all().order_by('-id')
+    paginator=Paginator(posts_list , 1 )
+    #count_number=visit_num.objects.get()
+    #count_number.viewed()
+    current_page=request.GET.get('page')
+    
+    try:
+        post_s=paginator.page(current_page)
+    except PageNotAnInteger:
+        post_s=paginator.page(1)
+    except EmptyPage:
+        post_s=paginator.page(paginator.num_pages)
+
+    return render(request,'blog/mainpage_new.html',{'post_s':post_s})
+    

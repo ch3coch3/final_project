@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-12 col-md-10">         
-            {% for post in area_posts %}
+            {% for post in post_s.object_list %}
             <article class="media content-section bg-light">
                 <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
                 <div class="media-body">
@@ -43,6 +43,22 @@
               </article>
               <br>
             {% endfor %}
+            <hr>
+            <center>       
+            <div class='pagination'>
+            <ul class="list-group list-group-horizontal-sm">
+                {% if post_s.has_previous %}
+                    <li class="list-group-item list-group-item-info"><a href="?page={{ post_s.previous_page_number }}">previous</a><li>
+                {% endif %}
+                {% for num in post_s.paginator.page_range %}
+                    <li class="list-group-item list-group-item-info"><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endfor %}
+                {% if post_s.has_next %}
+                        <li class="list-group-item list-group-item-info"><a href="?page={{ post_s.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+            </div>
+            </center>
         </div>
     </div>
 

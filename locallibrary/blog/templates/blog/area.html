@@ -1,11 +1,16 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ areas }}{% endblock %}
 {% block content %}
+<style>
+body {background-color: hsl(189, 90%, 94%);}
+#para1 { background-color: hsl(50, 90%, 94%);}
+</style>
+<body>
 <p class='inlineBlock'></p>
-    <div class="row">
+    <div class="row"> 
         <div class="col-12 col-md-2">
             <div div class="btn-group-vertical h-90 d-inline-block" style="width: 11rem;">
-                <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Course-reviews/">Course reviews</a></button>
+                <button type="button" class="btn btn-light"><img src="school.png" style="width:30px;height:30px;"><a href="/area/{{ areas }}/Course-reviews/">Course reviews</a></button>
                 <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Daily-life/">Daily life</a></button>
                 <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Foods/">Foods</a></button>
                 <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Entertainment/">Entertainment</a></button>
@@ -19,8 +24,8 @@
                 <button type="button" class="btn btn-light"><a href="/area/{{ areas }}/Climate/">Climate</a></button>
             </div>
         </div>
-        <div class="col-12 col-md-10">       
-            {% for post in area_posts %}
+        <div class="col-12 col-md-10" >       
+            {% for post in post_s.object_list %}
             <article class="media content-section bg-light">
                 <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="{{ post.author }}" width="25" height = "25">
                 <div class="media-body">
@@ -41,14 +46,28 @@
                         </span></small>
                         {% endfor %}
                   </div></h5>
-                  <h2 class="article-title text-secondary">{{ post.title }}</h2>
+                  <h2 class="article-title text-secondary"><span style="color:hsl(204, 100%, 44%);font-weight:bold">{{ post.title }}</span></h2>
                   <p class="article-content">{{ post.content|safe|truncatechars_html:100 }}</p>
                   <a href="{% url 'post-detail' post.id %}" class="text-secondary float-right">(see more...)</a>
                 </div>
               </article>
               <br>
             {% endfor %}
+            <hr>       
+            <div class='pagination '>
+            <ul class="list-group list-group-horizontal">
+                {% if post_s.has_previous %}
+                    <li class="list-group-item"><a href="?page={{ post_s.previous_page_number }}">previous</a><li>
+                {% endif %}
+                {% for num in post_s.paginator.page_range %}
+                    <li class="list-group-item"><a href="?page={{ num }}">{{ num }}</a></li>
+                {% endfor %}
+                {% if post_s.has_next %}
+                        <li class="list-group-item"><a href="?page={{ post_s.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+            </div>
         </div>
     </div>
-
+</body>
 {% endblock %} 
