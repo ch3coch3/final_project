@@ -28,7 +28,6 @@
         background-color: rgb(219, 209, 209);
         border: none;
         /* color: black; */
-        padding: 5px 68px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
@@ -239,6 +238,30 @@
             font-family: 'Dancing Script', cursive;
             font-size: 25px;
         }
+        /*會員資料展開頁面設計*/
+        .nav-link::after{
+             content: '';
+             display: block;
+             width:0;
+             height: 2px;
+             transition: width .3s;
+             background-color: cornsilk;
+
+         }
+         .nav-link:hover::after{
+             width: 100%;
+             transition: width .3s;
+             
+         }
+         
+         #profilebar1:hover{
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-decoration: none;
+            font-size:19px;
+            overflow:hidden;
+            transition: 0.2s
+         }
     </style>
 
 <head>
@@ -271,10 +294,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'newshome' %}">News <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" id="profilebar1" href="{% url 'newshome' %}">News <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'ask' %}">Ask <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" id="profilebar1" href="{% url 'ask' %}">Ask <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <div class = 'collapse navbar-collapse'>
@@ -291,7 +314,7 @@
             <ul class="nav justify-content-end">
                 {% if user.is_authenticated %}
                         <div class="chat">
-                            <button class="chatbtn">Chat Room
+                            <button class="chatbtn" id="profilebar1">Chat Room
                                 <i class="fa fa-caret-down"></i>
                             </button>
                                 <div class="chat-content1">
@@ -305,26 +328,26 @@
                         </div>
                     {% if 'ask/' in request.path %}
                         <li class="nav-item active"></li>
-                            <a class="nav-link  text-white" href="{% url 'ask_post' %}">Ask Question<span class="sr-only">(current)</span></a>
+                            <a class="nav-link  text-white"id="profilebar1" href="{% url 'ask_post' %}">Ask Question<span class="sr-only">(current)</span></a>
                         </li>
                     {% elif '/news' in request.path %}    
                     {% else %}
                         <li class="nav-item active"></li>
-                            <a class="nav-link  text-white" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
+                            <a class="nav-link  text-white"id="profilebar1" href="{% url 'add_post' %}">Add Post<span class="sr-only">(current)</span></a>
                         </li>
                     {% endif %}
                     
                    
                 <li class="nav-item active" ></li>
-                    <a class="nav-link  text-white" href="#" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
+                    <a class="nav-link  text-white" href="#"id="profilebar1" onclick="openNav()">Profile<span class="sr-only">(current)</span></a>
                 </li>
                     
                 {% else %}
                     <li class="nav-item active">
-                        <a class="nav-link  text-white" href="{% url 'users:login' %}">Log in<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white" id="profilebar1" href="{% url 'users:login' %}">Log in<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link  text-white" href="{% url 'register' %}">Sign up<span class="sr-only">(current)</span></a>
+                        <a class="nav-link  text-white"id="profilebar1" href="{% url 'register' %}">Sign up<span class="sr-only">(current)</span></a>
                     </li>
                 {% endif %}
             </ul>
