@@ -262,6 +262,10 @@
             overflow:hidden;
             transition: 0.2s
          }
+         .footer{
+            padding: 3px;
+
+         }
     </style>
 
 <head>
@@ -280,7 +284,7 @@
     </title>
 </head>
 
-<body style="background-color:hsl(44,26%,85%);">
+<body style="background-color:white;">
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary relative bg-secondary">
         <a class="navbar-brand" href="{% url 'blog-home' %}" id="title">
             <img src="/media/uploads/icon/logofinal.png" width="50" height="40" class="d-inline-block align-center" alt="" loading="lazy">
@@ -351,7 +355,6 @@
             </ul>
         </div>
 
-
     
     <!--會員資料展開頁-->
 
@@ -394,7 +397,130 @@
     </div>
 <!--會員資料展開頁---end-->
     </nav>
-
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light" style="background: url(/media/uploads/icon/global.jpeg); margin-right: 0px; opacity: 0.8;">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-bold" style="color: white;-webkit-text-stroke: 2px #000000">NCKU</h1><br>
+            <h2 class="display-5 font-weight-bold" style="color: white;-webkit-text-stroke: 2px #000000">
+                International Affairs</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="col-md-12 col-sm-12 text-left">
+                <div class="cil-md-8 text-left p-1-0">
+                    <h4 class="widget-title">姊妹校</h4>
+                    <img src="/media/uploads/icon/map1.png" height="468 px" width="650 px">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-12 col-sm-12 text-left">
+                <div class="col-md-6 text-left p-1-0">
+                    <h4 class="widget-title">熱門交換心得</h4>
+                </div>
+            </div>
+            <div class="post-content post-1-columns">
+                <div class="post-item">
+                    <div class="post-image">
+                        <img src="/media/uploads/icon/share.jpg" height="234 px">
+                    </div>
+                    <div class="post-content-details">
+                        <div class="post-title">
+                            <h4>
+                                <a href="https://blog.skyline.tw/reprinted-amsterdam-booking/">
+                                    "前進阿姆斯特丹"
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="container">
+                            <div class="col-md-6">
+                                <span class="post-author">
+                                    "Post by: NCKU"
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <span class="post-author">
+                                    "2019-10-14"
+                                </span>
+                            </div>
+                            <div class="post-description">
+                                <p>
+                                    "Skyline 國際機會平台：海外職涯分享！對 OTA (Online Travel Agent ) 產業有興趣嗎？好奇Booking.com 面試是怎麼進行的嗎？這次帶你前進總部位在荷蘭阿姆斯特丹的 Booking.com；Booking.com 成立於1996年，已經有22年的歷史，是全球最大的旅遊電子商務公司之一，公司願景為：「讓每個人都能輕鬆體驗世界」；這次我們邀請了 Nana Chiang ，分享她在Booking.com 面試的心路歷程以及建議，如果未來想到 Booking 工作的你，以及夢想到歐洲發展職涯的你，千萬不能錯過唷！ 本文經作者授權轉載，若對作者的經歷有興趣或想看更多文章可以到 Medium 及 產品三眼怪實驗室支持 Nana Chiang唷！"
+                                </p>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer" class="site-footer py-5 bg-secondary" itemscope="itemscope">    
+                <div class="row">
+                    <div class="col-3">
+                        <div class="col-md-12">
+                            <div class="footer-logo float-left">
+                                <img src="/media/uploads/icon/logofinal.png" style="width: 150px; height: 125px;">
+                                <p style="margin-top: 12px; color: white;">NCKU國際平台</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        
+                            <div class="widget claerfix">
+                                <h4 class="widget-title" style="color: white;">認識A-Board</h4>
+                                <ul class="list-simple">
+                                    <li>
+                                        <a href="https://skyline.tw/about" style="color: white;">
+                                            關於我們
+                                        </a>
+                                    </li>
+                                    <li><a href="https://skyline.tw/join-us" style="color: white;">
+                                        加入我們
+                                    </a></li>
+                                </ul>
+                            </div>
+                    </div>    
+                    
+                    <div class="col-3">
+                            <div class="widget clearfix">
+                                <h4 class="widget-title" style="color: white;">共同開發</h4>
+                                <ul class="list-simple">
+                                    <li>
+                                        <a href="https://skyline.tw/about#ourpartners" style="color: white;">
+                                            合作夥伴
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://skyline.tw/about#contactus" style="color: white;">
+                                            活動推廣
+                                        </a>
+                                    </li>
+                                    <li><a href="https://skyline.tw/about#service" style="color: white;">活動協辦</a></li>
+                                    <li><a href="#" style="color: white;">人才尋找</a></li>
+                                </ul>
+                            </div>
+                        
+                    </div>
+                    <div class="col-3">
+                        <div class="widget clearfix">
+                            <h4 class="widget-title" style="color: white;">相關連結</h4>
+                            <ul class="list-simple">
+                                <li>
+                                    <a href="https://www.facebook.com/NCKUSU/" style="color: white;">
+                                        成大學生會
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://oia.ncku.edu.tw/" style="color: white;">
+                                        成大國際處
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="footer-bottom" class="clr no-footer-nav bg-secondary"></div>
+                </div>
+    </footer>
      <!--會員資料展開頁-->
     
 
